@@ -127,6 +127,13 @@ export default{
         },
         向后端发送商品信息(index)
         {
+            /*
+
+            
+
+
+
+            */
             if(index != -1)
             {
                 var address = 

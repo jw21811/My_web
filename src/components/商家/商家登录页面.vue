@@ -2,7 +2,7 @@
     <body>
     <div class="背景">
         <div class="登录框">
-            <h2 class="标题文字" @click="">e-Shop</h2>
+            <h2 class="标题文字" @click="">商家登录</h2>
             <div style="margin-top: 15px;">
                 <el-input v-model="input_account" clearable="true" placeholder="输入账号" @change=""></el-input>
                 <br>
@@ -107,7 +107,7 @@ export default {
         跳转到总界面()
         {
             this.$router.push({
-                path: '/Page',
+                path: '/User/Page',
                 query:{
                     user_id:this.user_id
                 }

@@ -83,7 +83,7 @@ export default{
         跳转到商品子页面()
         {
             this.$router.push({
-                path: '/Page/Goods',
+                path: '/User/Page/Goods',
                 query:{
                     user_id:this.user_id
                 }
@@ -92,7 +92,7 @@ export default{
         跳转到购物车子页面()
         {
             this.$router.push({
-                path: '/Page/Cart',
+                path: '/User/Page/Cart',
                 query:{
                     user_id:this.user_id
                 }
@@ -101,7 +101,7 @@ export default{
         跳转到我的订单子页面()
         {
             this.$router.push({
-                path: '/Page/Order',
+                path: '/User/Page/Order',
                 query:{
                     user_id:this.user_id
                 }
