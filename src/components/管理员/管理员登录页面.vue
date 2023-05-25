@@ -9,7 +9,7 @@
                 <el-input v-model="input_password" show-password="false" placeholder="输入密码" @change=""></el-input>
                 <el-button type="primary" icon="el-icon-position" @click="向后端发送登录请求()">登录</el-button>
                 <el-button type="primary" icon="el-icon-position" @click="跳转到注册页面()">注册</el-button>
-                <el-button type="primary" icon="el-icon-position" @click="一键登录()"></el-button>
+                <el-button type="primary" icon="el-icon-position" @click="一键登录()">游客登录</el-button>
             </div>
         </div>
     </div>
