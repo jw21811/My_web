@@ -35,7 +35,6 @@ const routes = [
     { path:'/Merchant/Order',component: Merchant_Order},//商家待处理订单页面
     { path:'/Merchant/Goods',component: Merchant_Goods},//商家商品页面
     { path:'/Merchant/Shop',component: Merchant_Shop},//商家店铺页面
-
     { path:'/Delivery_staff/Login',component: Delivery_staff_Login},//骑手登陆页面
 
 
