@@ -7,6 +7,7 @@
             <el-container>
                 <el-aside class="侧边栏" width="100px">
                     <el-tabs :tab-position="tabPosition" @tab-click="handleClick" style="height: 200px; width:100px">
+                        <el-tab-pane label="Main"></el-tab-pane>
                         <el-tab-pane label="商品浏览"></el-tab-pane>
                         <el-tab-pane label="购物车"></el-tab-pane>
                         <el-tab-pane label="我的订单"></el-tab-pane>
@@ -20,7 +21,6 @@
             </el-container>
         </el-container>
     </div>
-
 </template>
 
 <script>
@@ -34,7 +34,7 @@ export default{
     },
     created(){
         this.user_id=this.$route.query.user_id
-        this.跳转到商品子页面()
+        this.跳转到空白说明页面()
     },
     methods:
     {
@@ -67,29 +67,42 @@ export default{
         handleClick(tab)
         {
             /**用来处理标签页点击事件 */
-            if(tab.label=="商品浏览")
+            if(tab.label == "Main")
             {
-                this.跳转到商品子页面()
+                this.跳转到空白说明页面()
+            }
+            else if(tab.label=="商品浏览")
+            {
+                this.跳转到商品浏览页面()
             }
             else if(tab.label=="购物车")
             {
-                this.跳转到购物车子页面()
+                this.跳转到购物车页面()
             }
             else if(tab.label=="我的订单")
             {
-                this.跳转到我的订单子页面()
+                this.跳转到我的订单页面()
             }
         },
-        跳转到商品子页面()
+        跳转到空白说明页面()
+        {
+            this.$router.push({
+                path: '/User/Page/Info',
+                query:{
+                    user_id:this.user_id
+                }
+            })
+        },
+        跳转到商品浏览页面()
         {
             this.$router.push({
                 path: '/User/Page/Goods',
                 query:{
                     user_id:this.user_id
                 }
-            })
+            }) 
         },
-        跳转到购物车子页面()
+        跳转到购物车页面()
         {
             this.$router.push({
                 path: '/User/Page/Cart',
@@ -98,7 +111,7 @@ export default{
                 }
             }) 
         },
-        跳转到我的订单子页面()
+        跳转到我的订单页面()
         {
             this.$router.push({
                 path: '/User/Page/Order',
@@ -110,7 +123,7 @@ export default{
         退出登录()
         {
             this.$router.push({
-                path: '/Login',
+                path: '/User/Login',
                 query:{
                 }
             })

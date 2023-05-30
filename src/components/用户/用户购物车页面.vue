@@ -60,6 +60,7 @@ export default{
     },
     created(){
         this.user_id = this.$route.query.user_id
+        console.log(this.user_id);
         var address = '/cart/listByUser?userId=' + this.user_id//字符串拼接，获得后端地址
         this.axios
         .get(address)

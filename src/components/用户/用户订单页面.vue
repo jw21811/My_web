@@ -1,5 +1,16 @@
 <template>
 <div class="背景">
+    
+</div>
+</template>
+
+
+
+<script>
+
+export default{
+    /*
+    
     <div class="单个订单区域" v-for="(Order, index) in 订单列表">
         <div class="划分区域_子类纵向排列">
             <div>订单id:<br>{{ Order.id }}</div>
@@ -17,13 +28,9 @@
             </div>
         </div>
     </div>
-</div>
-</template>
-
-
-
-<script>
-export default{
+    
+    
+    */
     data(){
         return{
             user_id:'',
@@ -32,12 +39,15 @@ export default{
     },
     mounted(){
         this.user_id=this.$route.query.user_id
+        /*
+            此处的代码用于在页面创建时就获得用户的订单信息
         var address = '/order/listByUser?userId=' + this.user_id
         this.axios
             .get(address)
             .then((Return_info) => {
                 this.订单列表 = Return_info.data
         })
+        */
     },
     methods:
     {
