@@ -17,7 +17,7 @@ export default{
     },
     mounted(){
         this.user_id = this.$route.query.user_id
-        //this.search_result = this.$route.query.search_result
+        this.search_result = this.$route.query.search_result
         
     },  
     methods:

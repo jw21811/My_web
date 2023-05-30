@@ -40,14 +40,14 @@ export default{
             }
             else
             {
-                /*
-                                var address = '/user/search?data='+this.input //字符串拼接，获得后端地址
+                
+                var address = '/user/search?data='+this.input //字符串拼接，获得后端地址
                 this.axios
                 .get(address)
                 .then((Return_info)=>{
                     this.merchants = Return_info
+                    console.log(Return_info)
                 })
-                */
                 this.input = ''
                 this.跳转到搜索结果页面()
             }
