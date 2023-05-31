@@ -87,7 +87,7 @@ export default {
             if(this.input_account !='' &&this.input_password !='')
             {
                 this.axios
-                .get(`/user/login?name=${this.input_account}&password=${this.input_password}`)//向后端接口传输
+                .get(`/user/login?name=${this.input_account},password=${this.input_password}`)//向后端接口传输
                 .then((Return_info)=>{
                     if(Return_info.data == "invalid")
                     {
