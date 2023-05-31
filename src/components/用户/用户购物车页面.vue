@@ -1,104 +1,38 @@
 <template>
     <div>
-        <el-container>
-            <div class="控件">
-                <el-checkbox v-model="商品选择状态" @change="全选()">全选</el-checkbox>
-            </div>
-                <div class="IMG">
-                    <el-button type="primary" icon="el-icon-delete" @click="移除商品(-1)">移除选中商品</el-button>
-                </div>
-                <div class="商品信息"></div>
-                <div class="加入购物车">
-                    <el-button type="primary" icon="el-icon-s-finance" size="" @click="确认生成订单()">生成订单</el-button>
-                </div>
-            </el-container>
-        <el-container v-for="(Goods, index) in 本地购物车列表" >
+        <div class="单个购物车区域" v-for="(Merchant, index) in 购物车列表">
             <el-container>
-                <div class="控件">
-                    <el-checkbox v-model="Goods.condition" @change="计算总价()">选择</el-checkbox>
-                </div>
-                <div class="IMG">
-                    <img :src="'http://web118.vipgz6.91tunnel.com/' + Goods.thumbnail" class="IMG">
-                </div>
+                <el-header>{{ Merchant.商家名称 }}</el-header>
                 <el-main>
-                    <div class="商品信息">
-                        {{ Goods.name }}
-                    </div>
-                    <div class="商品信息">
-                        单价：{{ Goods.price }} 元
-                    </div>
-                    <div class="商品信息">
-                        数量：{{ Goods.num }}
-                    </div>
-                    <div class="商品信息">
-                        小计：{{ Goods.Count }} 元
+                    <div v-for="(Good, index) in Merchant.商品">
+                        <el-row :span="6">
+                            <el-col :span="4"><div>品名:{{ Good.商品名称 }}</div></el-col>
+                            <el-col :span="4"><div>规格:{{ Good.商品规格 }}</div></el-col>
+                            <el-col :span="4"><div>单价:{{ Good.商品单价 }}</div></el-col>
+                            <el-col :span="4"><div>数量:{{ Good.商品数量 }}</div></el-col>
+                        </el-row>
                     </div>
                 </el-main>
-                <div class="加入购物车">
-                    <el-button type="primary" icon="el-icon-minus" @click="移除商品(index)">移除商品</el-button>
-                </div>
             </el-container>
-        </el-container>
-        <el-container>
-            总价:<strong>{{ Total }}</strong>元
-        </el-container>
+        </div>
     </div>
 </template>
 
-
-
 <script>
+import 全局变量 from '@/assets/全局变量.vue'
 export default{
     data(){
         return{
-            商品选择状态:false,
-            Total:0,
             user_id:'',
-            购物车列表:[],
-            本地购物车列表:[],
+            购物车列表:[]
         }
     },
-    created(){
+    mounted(){
         this.user_id = this.$route.query.user_id
-        console.log(this.user_id);
-        var address = '/cart/listByUser?userId=' + this.user_id//字符串拼接，获得后端地址
-        this.axios
-        .get(address)
-        .then((Return_info)=>{
-            this.购物车列表=Return_info.data
-            this.本地购物车列表 = this.购物车列表
-            this.本地购物车列表规范化()
-        })
+        this.购物车列表 = 全局变量.本地购物车列表
     },
     methods:
     {   
-        全选()
-        {
-            this.本地购物车列表.forEach((Good)=>{
-                Good.condition = this.商品选择状态
-            })
-            this.计算总价()
-        },
-        计算总价()
-        {
-            this.Total = 0
-            this.本地购物车列表.forEach((Good=>{
-                if(Good.condition == true)
-                {
-                    this.Total += Good.num*Good.price
-                }
-            }))
-        }, 
-        本地购物车列表规范化()
-        {
-            /**为每一个商品对象添加一个“选中属性,以及总价”
-             * 方便进行全选、多选操作
-             */
-            this.本地购物车列表.forEach((Good)=>{
-                this.$set(Good,'condition',false)
-                this.$set(Good,'Count',Good.num * Good.price)
-            })
-        },
         确认生成订单()
         {
             this.确认生成订单对话(
@@ -112,7 +46,6 @@ export default{
         },
         向后端发送订单()
         {
-            var cartid =[]
             var address='/order/addCastOrder?userId=' + this.user_id +'&cartList='
             this.本地购物车列表.forEach((Good)=>{
                 if(Good.condition == true)
@@ -200,50 +133,6 @@ export default{
                 });
             });
         },
-        向后端发送删除商品信息(index)
-        {  
-            /**若传入的index为-1，则说明处于多选删除模式
-             * 否则只删除单个商品
-             * 多选删除中不接收后端返回值
-             * 完成删除后才一次性获取购物车信息
-             */
-            if(index != -1)
-            {
-                var address =
-                    '/cart/deleteById?userId=' +
-                    this.user_id +
-                    '&cartId=' +
-                    this.购物车列表[index].cardid
-                this.axios
-                    .get(address)
-                    .then((Return_info) => {
-                        this.购物车列表 = Return_info.data
-                        this.本地购物车列表 = this.购物车列表
-                        this.本地购物车列表规范化()
-                    })
-            }
-            else
-            {
-                this.本地购物车列表.forEach((Good) => {
-                    if (Good.condition == true) {
-                        var address =
-                            '/cart/deleteById?userId=' +
-                            this.user_id +
-                            '&cartId=' +
-                            Good.cardid
-
-                        this.axios
-                            .get(address)
-                            .then((Return_info) => {
-                                this.购物车列表 = Return_info
-                            })
-                    }
-                })
-                this.本地购物车列表 = this.购物车列表
-                this.本地购物车列表规范化()
-                location.reload()
-            }
-        },
         Alert_Error(msg) {
              /**弹窗警告
               * 类型：错误
@@ -271,7 +160,6 @@ export default{
             })
         },
     }
-    
 }
 
 
@@ -304,5 +192,12 @@ export default{
     width: 100px;
     text-align:center
 }
-    
+.单个购物车区域
+{
+    height: auto;
+    display: flex;
+    flex-direction:row;/**子类纵向排列 */
+    background-color: rgb(229, 252, 252);
+    border-width: 1px 0 0px 0; border-style: solid; border-color: black;
+}
 </style>

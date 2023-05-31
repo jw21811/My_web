@@ -5,7 +5,7 @@ module.exports = defineConfig({
     devServer: {
         proxy: {
             '/api': {
-                target: 'http://10.34.87.132:1514',//校外vpn链接
+                target: 'http://10.34.87.132:1514',//目标后端ip与端口格式：http://10.34.87.132:1514
                 ws: false,
                 changeOrigin: true,
                 pathRewrite: {
