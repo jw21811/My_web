@@ -10,12 +10,6 @@ import User_Page_Order from '../components/用户/用户订单页面'
 import User_Page_Search_Result from '../components/用户/用户搜索结果页面'
 import User_Page_Empty_Info from '../components/用户/用户空白说明页面'
 
-import Merchant_Login from '../components/商家/商家登录页面'
-import Merchant_Main_Page from '../components/商家/商家总页面'
-import Merchant_Page_Order from '../components/商家/商家待处理订单页面'
-import Merchant_Page_Goods from '../components/商家/商家商品页面'
-import Merchant_Page_Shop from '../components/商家/商家店铺页面'
-
 import Delivery_staff_Login from '../components/骑手/骑手登录页面'
 
 import Admin_Login from '../components/管理员/管理员登录页面'
@@ -39,18 +33,7 @@ const routes = [
     },
 
 
-    { path: '/Merchant/Login', component: Merchant_Login },//商家登录页面
-    {
-        path: './Merchant/Page', component: Merchant_Main_Page,//商家总页面，负责侧边栏与头像显示。包含以下几个子页面
-        children: [
-            { path: '/Merchant/Page/Order', component: Merchant_Page_Order },//商家待处理订单页面
-            { path: '/Merchant/Page/Goods', component: Merchant_Page_Goods },//商家商品页面
-            { path: '/Merchant/Page/Shop', component: Merchant_Page_Shop },//商家店铺页面
-        ]
-    },
-
-
-
+    
     
     { path: '/Delivery_staff/Login', component: Delivery_staff_Login },//骑手登陆页面
 
