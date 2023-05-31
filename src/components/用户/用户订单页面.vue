@@ -15,12 +15,12 @@
         </div>
         <div class="划分区域_子类纵向排列">
             <div v-for="(Good) in Order.goods">
-                <div>规格:{{ Good.format}}元</div>
+                <div>规格:{{ Good.format}}</div>
             </div>
         </div>
         <div class="划分区域_子类纵向排列">
             <div v-for="(Good) in Order.goods">
-                <div>单价:{{ Good.price}}</div>
+                <div>单价:{{ Good.price}}元</div>
             </div>
         </div>
         <div class="划分区域_子类纵向排列">
