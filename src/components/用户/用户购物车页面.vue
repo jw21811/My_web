@@ -6,10 +6,11 @@
                 <el-main>
                     <div v-for="(Good, index) in Merchant.商品">
                         <el-row :span="6">
+                            <el-col :span="1"><div></div></el-col>
                             <el-col :span="4"><div>品名:{{ Good.商品名称 }}</div></el-col>
                             <el-col :span="4"><div>规格:{{ Good.商品规格 }}</div></el-col>
                             <el-col :span="4"><div>单价:{{ Good.商品单价 }}</div></el-col>
-                            <el-col :span="4"><div>数量:{{ Good.商品数量 }}</div></el-col>
+                            <el-col :span="4"><el-input-number v-model="Good.商品数量" @change="handleChange" :min="1" :max="99" label="描述文字"></el-input-number></el-col>
                         </el-row>
                     </div>
                 </el-main>
