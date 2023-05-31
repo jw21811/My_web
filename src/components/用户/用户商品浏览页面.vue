@@ -7,7 +7,7 @@
         </el-col>
         <el-col :span="4">
             <div class="grid-content bg-purple-light">
-                <el-button type="primary" @click="向后端发送搜索请求()">搜索</el-button>
+                <el-button type="primary"  icon="el-icon-search" @click="向后端发送搜索请求()">搜索</el-button>
             </div>
         </el-col>
         <el-col :span="20">
