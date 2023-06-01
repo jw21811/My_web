@@ -1,6 +1,5 @@
 <template>
   <div>
-  <div v-for="(merchant,index) in 商品列表">
   <div class="merchant-detail">
     <h2 class="merchant-name">name(名称):{{ merchant.name }}</h2>
     <p class="merchant-info">Address(地址): {{ merchant.address }}</p>
@@ -19,27 +18,25 @@
       <button type="submit">Submit(提交)</button>
     </form>
   </div>
-  </div>
+  
   <p>Business Status: {{ merchant.businessStatus ? 'Open' : 'Closed' }}</p>
   <button @click="toggleBusinessStatus">Change Business Status</button>
   </div>
 </template>
 
 <script>
-import 全局变量 from '@/assets/全局变量.vue'
 export default {
   data() {
     return {
-      商品列表:[],
-      merchantId: null,
-      merchant: {},
-      /*merchant: {
-        name: "",
-        address: "",
-        contact: "",
-        sellmoney: ""
+     /* merchantId: null,
+      merchant: {},*/
+      merchant: {
+        name: "粥道",
+        address: "广西",
+        contact: "123456",
+        sellmoney: "12342"
         // 其他商家信息
-      },*/
+      },
       complaint: {
         name: "",
         email: "",
@@ -49,8 +46,6 @@ export default {
   },
   mounted() {
     this.fetchMerchantInfo();
-    this.商品列表 = 全局变量.本地商品列表
-    console.log(全局变量.本地商品列表)
   },
   methods: {
     fetchMerchantInfo() {

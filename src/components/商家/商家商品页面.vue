@@ -5,12 +5,11 @@
     <ul>
       
       <li v-for="goods in merchantGoods" :key="goods.name">
-        <div v-for="(item,index) in 上架商品列表">
-          <h3>Name(名称): {{ item.name }}</h3>
-        <p>Format: {{ item.format }}</p>
-        <p>Price(价格): {{ item.price }}</p>
-        <p>SaledNumber(数量): {{ item.saledNumber }}</p>
-      </div>
+          <h3>Name(名称): {{ goods.name }}</h3>
+        <p>Format: {{ goods.format }}</p>
+        <p>Price(价格): {{ goods.price }}</p>
+        <p>SaledNumber(数量): {{ goods.saledNumber }}</p>
+      
     </li>
     </ul>
     
@@ -30,11 +29,9 @@
 </template>
 
 <script>
-import 全局变量 from '@/assets/全局变量.vue'
 export default {
   data() {
     return {
-      上架商品列表: [],
       merchantGoods: [
         {
           name: "Product 1",
@@ -68,8 +65,6 @@ export default {
   },
   mounted() {
 
-    this.上架商品列表 = 全局变量.本地上架商品列表;
-    console.log(全局变量.本地上架商品列表);
   },
   methods: {
     addNewGoods() {
