@@ -11,7 +11,7 @@ import User_Page_Merchant from '../components/用户/用户商家商品页面'
 import User_Page_Empty_Info from '../components/用户/用户空白说明页面'
 import User_Page_Complaint from '../components/用户/用户投诉页面'
 
-import Delivery_staff_Login from '../components/骑手/骑手登录页面'
+import Delivery_Login from '../components/骑手/骑手登录页面'
 
 import Admin_Login from '../components/管理员/管理员登录页面'
 
@@ -37,7 +37,7 @@ const routes = [
 
     
     
-    { path: '/Delivery_staff/Login', component: Delivery_staff_Login },//骑手登陆页面
+    { path: '/Delivery/Login', component: Delivery_Login },//骑手登陆页面
 
 
 

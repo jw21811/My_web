@@ -76,7 +76,7 @@ export default{
         },
         向后端发送订单(Merchant)
         {
-            var address='/customer/uploadOrder?user_id=' + this.user_id +'&goods=['
+            var address='/customer/uploadOrder?customer_id=' + this.user_id +'&goods=['
             Merchant.商品.forEach((单件商品及其信息)=>{
                 if(单件商品及其信息.商品数量 == 0)
                 {

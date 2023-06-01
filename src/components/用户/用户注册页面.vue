@@ -55,7 +55,7 @@ export default{
             {
                 this.Alert_Success('正在尝试注册...')
                 this.axios
-                .get(`/customer/register?name=${this.input_account}&password=${this.input_password1}`)
+                .get(`/customer/register?account=${this.input_account}&password=${this.input_password1}`)
                 .then((Return_info)=> {
                     if(Return_info.data !="OK")
                     {
