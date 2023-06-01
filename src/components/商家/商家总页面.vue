@@ -83,11 +83,12 @@ export default{
             {
                 this.跳转到订单页面()
             }
+            
         },
         跳转到空白说明页面()
         {
             this.$router.push({
-                path: '/Merchant/Page/Order',
+                path: '/Merchant/Page/Shop',
                 query:{
                     user_id:this.user_id
                 }
@@ -96,7 +97,7 @@ export default{
         跳转到商品页面()
         {
             this.$router.push({
-                path: '/Merchant/Page/Shop',
+                path: '/Merchant/Page/Goods',
                 query:{
                     user_id:this.user_id
                 }
@@ -114,7 +115,7 @@ export default{
         跳转到订单页面()
         {
             this.$router.push({
-                path: '/Merchant/Page/Goods',
+                path: '/Merchant/Page/AllOrder',
                 query:{
                     user_id:this.user_id
                 }

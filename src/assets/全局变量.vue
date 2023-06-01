@@ -1,8 +1,28 @@
 <script>
 
 
-
-
+var 本地商品列表 = [
+    {
+        name:'粥道',
+        address:'广西',
+        contact:'123456',
+        sellmoney:'13412'
+    }
+]
+var 本地上架商品列表 = [
+    {
+        name:'product 1',
+        format:'JSON',
+        price:'10',
+        saledNumber:'50'
+    },
+    {
+        name:'product 2',
+        format:'JSON',
+        price:'12',
+        saledNumber:'51'
+    }
+]
 
 
 
@@ -86,6 +106,8 @@ var 本地购物车列表 = [
 export default
     {
         本地购物车列表,
+        本地商品列表,
+        本地上架商品列表
     }
 
 
