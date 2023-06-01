@@ -146,7 +146,7 @@ export default{
         向后端获取商家商品(merchant_id)
         {
             /*
-            var address = '/user/getGoodsById?merchantId='+ merchant_id //字符串拼接，获得后端地址
+            var address = '/customer/getGoodsById?merchant_id='+ merchant_id //字符串拼接，获得后端地址
                 this.axios
                 .get(address)
                 .then((Return_info)=>{

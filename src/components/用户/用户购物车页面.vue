@@ -76,7 +76,7 @@ export default{
         },
         向后端发送订单(Merchant)
         {
-            var address='/user/uploadOrder?userId=' + this.user_id +'&goods=['
+            var address='/customer/uploadOrder?user_id=' + this.user_id +'&goods=['
             Merchant.商品.forEach((单件商品及其信息)=>{
                 if(单件商品及其信息.商品数量 == 0)
                 {
@@ -86,8 +86,8 @@ export default{
                 {
                     var Good = {}
                     Good.id = 单件商品及其信息.商品id
-                    Good.format = 单件商品及其信息.商品规格
-                    Good.number = 单件商品及其信息.商品数量
+                    Good.specification = 单件商品及其信息.商品规格
+                    Good.num = 单件商品及其信息.商品数量
                     address += JSON.stringify(Good)
                     address += ',' 
                 }
@@ -96,7 +96,7 @@ export default{
             address += ']&'
             address += 'notes='
             address += Merchant.备注
-            address += '&addr='
+            address += '&customer_address='
             address += Merchant.配送地址
             console.log(address)
             

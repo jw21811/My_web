@@ -44,7 +44,7 @@ export default {
         },
         向后端发送投诉()
         {
-            var address = '/user/complaint?userId=' + this.user_id + '&title=' + this.cache_name + '&msg=' + this.cache_msg
+            var address = '/customer/complaint?customer_id=' + this.user_id + '&title=' + this.cache_name + '&msg=' + this.cache_msg
             this.Alert_Success('正在上传')
             this.axios
             .get(address)

@@ -51,7 +51,7 @@ export default{
             else
             {
                 /*
-                var address = '/user/search?data='+this.input //字符串拼接，获得后端地址
+                var address = '/customer/search?data='+this.input //字符串拼接，获得后端地址
                 this.axios
                 .get(address)
                 .then((Return_info)=>{
