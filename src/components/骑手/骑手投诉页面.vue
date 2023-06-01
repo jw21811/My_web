@@ -5,7 +5,7 @@
         <div style="margin: 20px 0;"></div>
         <el-input type="textarea" :autosize="{ minRows: 2, maxRows: 4 }" placeholder="请输入投诉内容" v-model="cache_msg">
         </el-input>
-        <el-button type="primary" icon="el-icon-plus" @click="Updata()">留言</el-button>
+        <el-button type="primary" icon="el-icon-plus" @click="Updata()">投诉</el-button>
         <div>
         </div>
 
@@ -22,7 +22,7 @@ export default {
         }
     },
     created(){
-        this.user_id = this.$route.query.user_id
+        this.deliver_id = this.$route.query.deliver_id
     },
     methods:
     {
@@ -44,7 +44,7 @@ export default {
         },
         向后端发送投诉()
         {
-            var address = '/customer/complaint?customer_id=' + this.user_id + '&title=' + this.cache_name + '&msg=' + this.cache_msg
+            var address = '/deliver/complaint?deliver_id=' + this.user_id + '&title=' + this.cache_name + '&msg=' + this.cache_msg
             this.Alert_Success('正在上传')
             this.axios
             .get(address)

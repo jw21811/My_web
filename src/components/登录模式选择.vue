@@ -40,7 +40,7 @@ export default {
         跳转到骑手登录界面()
         {
             this.$router.push({
-                path: '/Delivery_staff/Login',
+                path: '/Deliver/Login',
             })
         },
         跳转到管理员登录界面()
