@@ -39,14 +39,14 @@ export default{
     mounted(){
         this.user_id=this.$route.query.user_id
         
-        /*此处的代码用于在页面创建时就获得用户的订单信息
-        var address = '/merchant/getWaittingListByld?merchant=' + this.user_id
+        //此处的代码用于在页面创建时就获得用户的订单信息
+        var address = '/merchant/getWaittingListByld?id=' + this.user_id
         this.axios
             .get(address)
             .then((Return_info) => {
                 this.订单列表 = Return_info.data
         })
-        */
+        
     },
     methods:
     {

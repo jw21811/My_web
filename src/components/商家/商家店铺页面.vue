@@ -52,7 +52,7 @@ export default {
       // 发起HTTP请求到后端，传递商家ID
       // 使用axios或其他HTTP库发送请求
       this.axios
-        .get(`/merchant/getmerchantInfoByld?merchantld=${this.merchantId}`)
+        .get(`/merchant/getmerchantId?id=${this.merchantId}`)
         .then(response => {
           this.merchant = response.data;
         })
