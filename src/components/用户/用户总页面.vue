@@ -11,6 +11,7 @@
                         <el-tab-pane label="商品浏览"></el-tab-pane>
                         <el-tab-pane label="购物车"></el-tab-pane>
                         <el-tab-pane label="我的订单"></el-tab-pane>
+                        <el-tab-pane label="投诉"></el-tab-pane>
                     </el-tabs>
                 </el-aside><!--此处存放侧边栏-->
                 <el-container>
@@ -83,6 +84,11 @@ export default{
             {
                 this.跳转到我的订单页面()
             }
+            else if(tab.label == "投诉")
+            {
+                this.Alert_Error('投诉')
+                this.跳转到用户投诉页面()
+            }
         },
         跳转到空白说明页面()
         {
@@ -115,6 +121,15 @@ export default{
         {
             this.$router.push({
                 path: '/User/Page/Order',
+                query:{
+                    user_id:this.user_id
+                }
+            })
+        },
+        跳转到用户投诉页面()
+        {
+            this.$router.push({
+                path: '/User/Page/Complaint',
                 query:{
                     user_id:this.user_id
                 }

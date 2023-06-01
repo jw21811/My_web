@@ -87,7 +87,7 @@ export default{
                 this.Alert_Error('请选择商品规格')
                 return
             }
-            for(var i = 0; i < 全局变量.本地购物车列表.length - 1; i++)
+            for(var i = 0; i < 全局变量.本地购物车列表.length; i++)
             {
                 if(全局变量.本地购物车列表[i].商家id === this.merchant_id)
                 {
@@ -98,6 +98,7 @@ export default{
                             if(全局变量.本地购物车列表[i].商品[j].商品规格 === this.format[index])//若商品规格相同
                             {
                                 全局变量.本地购物车列表[i].商品[j].商品数量 += 1//直接数量+1
+                                //this.Alert_Success('存在商品记录')
                                 return
                             }
                         }
@@ -109,6 +110,7 @@ export default{
                     good.商品数量 = 1;
                     good.商品单价 = this.换算商品单价(Good,index)
                     全局变量.本地购物车列表[i].商品.push(good)
+                    //this.Alert_Success('新建商品记录')
                     return
                 }
             }
@@ -126,7 +128,7 @@ export default{
             merchant.商品 = []
             merchant.商品.push(good)
             全局变量.本地购物车列表.push(merchant)
-            this.Alert_Success(merchant)
+            //this.Alert_Success('新建商家记录')
             return
         },
         换算商品单价(Good,index)
@@ -156,12 +158,7 @@ export default{
         },
         返回搜索页面()
         {
-            this.$router.push({
-                path: '/User/Page/Goods',
-                query: {
-                    user_id: this.user_id,
-                }
-            })
+            this.$router.back()
         },
         Alert_Error(msg) {
              /**弹窗警告

@@ -98,32 +98,22 @@ export default{
             address += Merchant.备注
             address += '&addr='
             address += Merchant.配送地址
-            this.购物车列表 = this.购物车列表.filter((Order) => {return Order.商家id !== Merchant.商家id})
-
-            /*
-   
-
-            var address='/user/uploadOrder?userId=' + this.user_id +'&goods=[' 
-            Merchant.商品.forEach((单件商品及其信息)=>{
-                if(单件商品及其信息.商品数量 == 0 )
+            console.log(address)
+            
+            this.axios
+            .get(address)
+            .then((Return_info)=>{
+                if(Return_info != 'ok')
                 {
-
+                    this.Alert_Error('未成功上传订单')
                 }
                 else
                 {
-                    address += '{id:' + 单件商品及其信息.商品id + ',format:' +  单件商品及其信息.商品规格 +',number:' + 单件商品及其信息.商品数量 + '},'
+                    this.Alert_Success('成功上传订单')
+                    this.购物车列表 = this.购物车列表.filter((Order) => {return Order.商家id !== Merchant.商家id})
+                    全局变量.本地购物车列表 = this.购物车列表
                 }
             })
-            address.pull
-
-            */
-            /*
-            this.axios
-            .get(`${address}${cartid}`)
-            .then((Return_info)=>{
-            })
-            location.reload()
-            */
         },
         确认生成订单对话(内容, 标题, 取消文本, 确认文本, 取消弹出文本, 确认弹出文本,Merchant) {
             /**简易的对话框

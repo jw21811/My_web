@@ -116,7 +116,7 @@ export default {
         跳转到注册页面()
         {
             this.$router.push({
-                path: '/Regsiter',
+                path: '/User/Regsiter',
                 query:{
 
                 }

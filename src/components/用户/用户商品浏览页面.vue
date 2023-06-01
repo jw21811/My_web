@@ -59,7 +59,7 @@ export default{
                     console.log(Return_info)
                 })
                 */
-               this.merchants = 全局变量.本地购物车列表
+               this.merchants = 全局变量.模拟商家列表
             }
         },
         跳转到商家页面(Merchant) {

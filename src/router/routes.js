@@ -9,6 +9,7 @@ import User_Page_Cart from '../components/用户/用户购物车页面'
 import User_Page_Order from '../components/用户/用户订单页面'
 import User_Page_Merchant from '../components/用户/用户商家商品页面'
 import User_Page_Empty_Info from '../components/用户/用户空白说明页面'
+import User_Page_Complaint from '../components/用户/用户投诉页面'
 
 import Delivery_staff_Login from '../components/骑手/骑手登录页面'
 
@@ -29,6 +30,7 @@ const routes = [
             { path: '/User/Page/Goods', component: User_Page_Goods },
             { path: '/User/Page/Cart', component: User_Page_Cart },
             { path: '/User/Page/Order', component: User_Page_Order },
+            { path: '/User/Page/Complaint',component: User_Page_Complaint},
         ]
     },
 
