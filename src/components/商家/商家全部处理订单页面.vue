@@ -63,7 +63,7 @@
       /*fetchProcessedOrders() {
         // 发起HTTP请求到后端，传递商家ID
         axios
-          .get(`/merchant/getWaittingListByld?merchantld=${this.merchantId}`)
+          .get(`/merchant/getAllListByld?id=${this.merchantId}`)
           .then(response => {
             this.processedOrders = response.data;
           })

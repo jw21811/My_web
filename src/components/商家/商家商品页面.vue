@@ -101,7 +101,21 @@ export default {
         .catch(error => {
           console.error(error);
         });
-    }
+    },
+    updatePrice(goods) {
+    axios
+      .post("/merchant/updateGoods", {
+        merchantId: this.merchantId,
+        goodsId: goods.id,
+        price: goods.price
+      })
+      .then(response => {
+        console.log("Price updated successfully!");
+      })
+      .catch(error => {
+        console.error(error);
+      });
+  }
   }
 };
 </script>
