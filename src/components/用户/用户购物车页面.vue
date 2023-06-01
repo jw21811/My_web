@@ -47,7 +47,7 @@ export default{
             购物车列表:[],
         }
     },
-    mounted(){
+    created(){
         this.user_id = this.$route.query.user_id
         this.购物车列表 = 全局变量.本地购物车列表
     },
@@ -76,7 +76,7 @@ export default{
         },
         向后端发送订单(Merchant)
         {
-            var address='/user/uploadOrder?userId=' + this.user_id +',goods=['
+            var address='/user/uploadOrder?userId=' + this.user_id +'&goods=['
             Merchant.商品.forEach((单件商品及其信息)=>{
                 if(单件商品及其信息.商品数量 == 0)
                 {
@@ -93,17 +93,17 @@ export default{
                 }
             })
             address = address.substring(0,address.length-1)
-            address += '],'
+            address += ']&'
             address += 'notes='
             address += Merchant.备注
-            address += ',addr='
+            address += '&addr='
             address += Merchant.配送地址
             this.购物车列表 = this.购物车列表.filter((Order) => {return Order.商家id !== Merchant.商家id})
 
             /*
    
 
-            var address='/user/uploadOrder?userId=' + this.user_id +',goods=[' 
+            var address='/user/uploadOrder?userId=' + this.user_id +'&goods=[' 
             Merchant.商品.forEach((单件商品及其信息)=>{
                 if(单件商品及其信息.商品数量 == 0 )
                 {

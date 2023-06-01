@@ -1,25 +1,35 @@
 <template>
-    <el-row>
-        <el-col :span="20">
-            <div class="grid-content bg-purple">
-                <el-input v-model="input" placeholder="请输入内容"></el-input>
+    <el-container>
+        <el-header>
+            <el-col :span="12">
+                <div class="grid-content bg-purple">
+                    <el-input v-model="input" placeholder="请输入内容"></el-input>
+                </div>
+            </el-col>
+            <el-col :span="4">
+                <div class="grid-content bg-purple-light">
+                    <el-button type="primary" icon="el-icon-search" @click="向后端发送搜索请求()">搜索</el-button>
+                </div>
+            </el-col>
+        </el-header>
+        <el-main>
+            <div class="单个购物车区域" v-for="(Merchant, index) in merchants">
+                <el-col :span="12">
+                <div class="grid-content bg-purple" @click="跳转到商家页面(Merchant)">
+                    {{ Merchant.商家名称 }}
+                </div>
+            </el-col>
             </div>
-        </el-col>
-        <el-col :span="4">
-            <div class="grid-content bg-purple-light">
-                <el-button type="primary"  icon="el-icon-search" @click="向后端发送搜索请求()">搜索</el-button>
-            </div>
-        </el-col>
-        <el-col :span="20">
-            <div class="grid-content bg-purple-light">
+        </el-main>
+        <el-footer>
 
-            </div>
-        </el-col>
-    </el-row>
+        </el-footer>
+    </el-container>
 </template>
 
 
 <script>
+import 全局变量 from '@/assets/全局变量.vue'
 export default{
     data(){
         return{
@@ -40,7 +50,7 @@ export default{
             }
             else
             {
-                
+                /*
                 var address = '/user/search?data='+this.input //字符串拼接，获得后端地址
                 this.axios
                 .get(address)
@@ -48,16 +58,17 @@ export default{
                     this.merchants = Return_info
                     console.log(Return_info)
                 })
-                this.input = ''
-                this.跳转到搜索结果页面()
+                */
+               this.merchants = 全局变量.本地购物车列表
             }
         },
-        跳转到搜索结果页面(){
+        跳转到商家页面(Merchant) {
             this.$router.push({
-                path: '/User/Page/Search_Result',//此处为路由地址，设置跳转的目的地
-                query:{
-                    user_id:this.user_id,//向下一页面传输用户的id
-                    //search_result:this.merchants,//向下一页面传输搜索的结果
+                path: '/User/Page/Merchant',
+                query: {
+                    user_id: this.user_id,
+                    merchant_id: Merchant.商家id,
+                    merchant_name:Merchant.商家名称,
                 }
             })
         },
@@ -154,5 +165,13 @@ export default{
 {
     flex: auto;
     width: 200px;
+}
+.单个购物车区域
+{
+    height: auto;
+    display: flex;
+    flex-direction:row;/**子类纵向排列 */
+    background-color: rgb(229, 252, 252);
+    border-width: 1px 0 0px 0; border-style: solid; border-color: black;
 }
 </style>

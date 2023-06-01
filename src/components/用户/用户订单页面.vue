@@ -117,7 +117,7 @@ export default{
 }
 .分隔
 {
-    width:75px;
+    width:100px;
     display: flex;
 }
 .背景

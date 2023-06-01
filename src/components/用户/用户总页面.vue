@@ -7,7 +7,7 @@
             <el-container>
                 <el-aside class="侧边栏" width="100px">
                     <el-tabs :tab-position="tabPosition" @tab-click="handleClick" style="height: 200px; width:100px">
-                        <el-tab-pane label="Main"></el-tab-pane>
+                        <el-tab-pane label="Main" ></el-tab-pane>
                         <el-tab-pane label="商品浏览"></el-tab-pane>
                         <el-tab-pane label="购物车"></el-tab-pane>
                         <el-tab-pane label="我的订单"></el-tab-pane>
