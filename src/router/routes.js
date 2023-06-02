@@ -11,14 +11,14 @@ import User_Page_Merchant from '../components/用户/用户商家商品页面'
 import User_Page_Empty_Info from '../components/用户/用户空白说明页面'
 import User_Page_Complaint from '../components/用户/用户投诉页面'
 
-<<<<<<< HEAD
 import Merchant_Login from '../components/商家/商家登录页面'
+import Merchant_Register from '..//components/商家/商家注册页面'
 import Merchant_Main_Page from '../components/商家/商家总页面'
 import Merchant_Page_Order from '../components/商家/商家待处理订单页面'
 import Merchant_Page_Goods from '../components/商家/商家商品页面'
 import Merchant_Page_Shop from '../components/商家/商家店铺页面'
 import Merchant_Page_AllOrder from '../components/商家/商家全部处理订单页面'
-=======
+
 import Deliver_Login from '../components/骑手/骑手登录页面'
 import Deliver_Register from '../components/骑手/骑手注册页面'
 import Deliver_Main_Page from '../components/骑手/骑手总页面'
@@ -26,7 +26,6 @@ import Deliver_Page_Order_Market from '../components/骑手/骑手订单市场�
 import Deliver_Page_Order_History from '../components/骑手/骑手历史订单页面'
 import Deliver_Page_Order_Working from '../components/骑手/骑手待处理订单页面'
 import Deliver_Page_Complaint from '../components/骑手/骑手投诉页面'
->>>>>>> 9309c90180abb310d627b5b6ac5d7d911be74499
 
 
 import 客服_Login from '../components/客服/客服登录页面'
@@ -54,8 +53,8 @@ const routes = [
     },
 
 
-<<<<<<< HEAD
     { path: '/Merchant/Login', component: Merchant_Login },//商家登录页面
+    { path: '/Merchant/Register', component: Merchant_Register },//商家注册页面
     {
         path: '/Merchant/Page', component: Merchant_Main_Page,//商家总页面，负责侧边栏与头像显示。包含以下几个子页面
         children: [
@@ -68,8 +67,6 @@ const routes = [
 
 
 
-=======
->>>>>>> 9309c90180abb310d627b5b6ac5d7d911be74499
     
     
     { path: '/Deliver/Login', component: Deliver_Login },//骑手登陆页面
