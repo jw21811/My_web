@@ -84,7 +84,7 @@ export default{
         },
         向后端发送订单(Merchant)
         {
-            var address='/customer/uploadOrder?customer_id=' + this.user_id +'&goods=['
+            var address='/customer/uploadOrder?customer_id=' + this.user_id +'&merchant_id='+ Merchant.商家id +'&goods=['
             Merchant.商品.forEach((单件商品及其信息)=>{
                 if(单件商品及其信息.商品数量 == 0)
                 {
@@ -113,9 +113,10 @@ export default{
             this.axios
             .get(address)
             .then((Return_info)=>{
-                if(Return_info != 'ok')
+                if(Return_info.data.status_code != 666)
                 {
                     this.Alert_Error('未成功上传订单')
+                    console.log(Return_info.data.detail)
                 }
                 else
                 {

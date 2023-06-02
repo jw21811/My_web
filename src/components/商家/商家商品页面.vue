@@ -1,199 +1,191 @@
 <template>
-  <div class="merchant-goods">
-    <h2>商品名称</h2>
-    
-    <ul>
-      
-      <li v-for="goods in merchantGoods" :key="goods.name">
-          <h3>名称: {{ goods.name }}</h3>
-        <p>规格: {{ goods.format }}</p>
-        <p>价格: {{ goods.price }}</p>
-        <p>数量: {{ goods.saledNumber }}</p>
-        <button @click="removeGoods(goods.id)">删除商品</button>
-      
-    </li>
-    </ul>
-    
-    <form @submit.prevent="addNewGoods">
-      <h3>添加商品</h3>
-      <label for="name">名称:</label>
-      <input type="text" id="name" v-model="newGoods.name" required>
-      <label for="format">规格:</label>
-      <input type="text" id="format" v-model="newGoods.format" required>
-      <label for="price">价格:</label>
-      <input type="number" id="price" v-model="newGoods.price" required>
-      <label for="saledNumber">数量:</label>
-      <input type="number" id="saledNumber" v-model="newGoods.saledNumber" required>
-      <button type="submit">添加</button>
-    </form>
-  </div>
+    <el-container>
+        <el-header>
+            <div>1232</div>
+        </el-header>
+        <el-main>
+            <el-table :data=goods height="750" borderstyle="width: 100%">
+                <el-table-column prop="id" label="id" sortable>
+                </el-table-column>
+                <el-table-column prop="name" label="品名" sortable>
+                </el-table-column>
+                <el-table-column prop="type" label="类型" sortable>
+                </el-table-column>
+                <el-table-column prop="price" label="单价" sortable>
+                </el-table-column>
+                <el-table-column prop="specification" label="规格">
+                </el-table-column>
+                <el-table-column prop="sales_volume" label="销量" sortable>
+                </el-table-column>
+                <el-table-column prop="是否售罄" label="售罄" sortable>
+                </el-table-column>
+                <el-table-column label="操作">
+                    <template slot-scope="scope">
+                        <el-button size="mini"  type="primary" @click="修改商品状态(scope.$index)">{{ 返回按钮值(scope.$index) }}</el-button>
+                        <el-button size="mini" type="danger" @click="确认删除商品(scope.$index)">删除</el-button>
+                    </template>
+                </el-table-column>
+
+            </el-table>
+        </el-main>
+        <el-footer>Footer</el-footer>
+    </el-container>
 </template>
+
+
 
 <script>
 export default {
-  data() {
-    return {
-      merchantGoods: [
-        {
-          name: "Product 1",
-          format: "JSON",
-          price: 10,
-          saledNumber: 50
-        },
-        {
-          name: "Product 2",
-          format: "JSON",
-          price: 20,
-          saledNumber: 30
-        },
-        {
-          name: "Product 3",
-          format: "JSON",
-          price: 15,
-          saledNumber: 40
+
+    data() {
+        return {
+            merchant_id: '',
+            goods: [],
         }
-        // 其他商品信息
-      ],
 
-
-      newGoods: {
-        name: "",
-        format: "",
-        price: 0,
-        saledNumber: 0
-      }
-    };
-  },
-  mounted() {
-
-  },
-  methods: {
-    addNewGoods() {
-      // 将新商品添加到商家商品列表
-      this.merchantGoods.push({ ...this.newGoods });
-
-      // 清空表单数据
-      this.newGoods = {
-        name: "",
-        format: "",
-        price: 0,
-        saledNumber: 0
-      };
-
-      axios
-        .post("/merchant/addGoods", {
-          merchantId: this.merchantId,
-          goods: { ...this.newGoods }
-        })
-        .then(response => {
-          // 请求成功后，将新菜品添加到商家商品列表
-          this.merchantGoods.push({ ...this.newGoods });
-
-          // 清空表单数据
-          this.newGoods = {
-            name: "",
-            format: "",
-            price: 0,
-            saledNumber: 0
-          };
-
-          console.log("New goods added successfully!");
-        })
-        .catch(error => {
-          console.error(error);
-        });
     },
-    
-    updatePrice(goods) {
-    axios
-      .post("/merchant/updateGoods", {
-        merchantId: this.merchantId,
-        goodsId: goods.id,
-        price: goods.price
-      })
-      .then(response => {
-        console.log("Price updated successfully!");
-      })
-      .catch(error => {
-        console.error(error);
-      });
-  },
-  removeGoods(goodsId) {
-      // Find the goods by ID
-      const goodsIndex = this.merchantGoods.findIndex(goods => goods.id === goodsId);
-      if (goodsIndex === -1) {
-        console.error("Goods not found");
-        return;
-      }
+    mounted() {
+        this.merchant_id = this.$route.query.merchant_id
+        this.goods = this.获取自身商品()
+    },
+    methods:
+    {
+        返回按钮值(index)
+        {
+                if(this.goods[index].is_sell_out)
+                {
+                    return '上架商品'
+                }
+                else
+                {
+                    return '下架商品'
+                }
+        },
+        修改商品状态(index)
+        {
+            var address = `/merchant/setSoldOut?goods_id=${this.goods[index].id}&merchant_id=${this.merchant_id}`
+            this.axios
+            .get(address)
+            .then((Return_info) => {
+                if(Return_info.data.status_code == 666)
+                {
+                    this.Alert_Success('更改商品状态成功！')
+                    this.获取自身商品()
+                }
+            })
 
-      // Perform removal logic here, e.g., send request to backend API
-      // with the goodsId to remove the goods from the merchant's inventory
-      // You can use Axios or any other HTTP library for making the request
 
-      // Example using Axios
-      axios
-        .post(`/merchant/removeGoods`, { goodsId })
-        .then(response => {
-          // Remove the goods from the merchantGoods array
-          this.merchantGoods.splice(goodsIndex, 1);
+        },
+        向后端删除商品(index)
+        {
+            var address = `/merchant/deleteGoods?goods_id=${this.goods[index].id}&merchant_id=${this.merchant_id}`
+            console.log(address)
+            this.axios
+            .get(address)
+            .then((Return_info) => {
+                if(Return_info.data.status_code == 666)
+                {
+                    this.Alert_Success('删除商品成功！')
+                }
+            })
 
-          // Removal successful
-          console.log("Goods removed successfully:", goodsId);
-        })
-        .catch(error => {
-          // Handle error
-          console.error("Error removing goods:", error);
-        });
-    }
-  }
-};
+        },
+        获取自身商品()
+        {
+            var address = `/merchant/getSelfGoods?merchant_id=${this.merchant_id}`
+            this.axios
+            .get(address)
+            .then((Return_info) => {
+                this.goods = Return_info.data.detail
+                this.goods.forEach( good =>{
+                if(good.is_sell_out)
+                {
+                    good.是否售罄 = "是"
+                }
+                else
+                {
+                    good.是否售罄 = "否"
+                }
+                console.log(good)
+            })
+            })
+        },
+
+        Alert_Error(msg) {
+            /**弹窗警告
+             * 类型：错误
+             * 
+             * 传入参数：
+             * 要输出的信息:msg
+             */
+            this.$message({
+                showClose: true,
+                message: msg,
+                type: 'error'
+            })
+        },
+        Alert_Success(msg) {
+            /**弹窗
+             * 类型：正常
+             * 
+             * 传入参数：
+             * 要输出的信息:msg
+             */
+            this.$message({
+                showClose: true,
+                message: msg,
+                type: 'success'
+            })
+        },
+    确认删除商品对话(内容, 标题, 取消文本, 确认文本, 取消弹出文本, 确认弹出文本, index) {
+            /**简易的对话框
+             * 
+             * 传入参数已经用中文说明
+             */
+            this.$confirm(内容, 标题, {
+                confirmButtonText: 确认文本,
+                cancelButtonText: 取消文本,
+                type: 'warning'
+            }).then(() => {
+                this.$message({
+                    type: 'success',
+                    message: 确认弹出文本
+                });
+                this.向后端删除商品(index)
+            }).catch(() => {
+                this.$message({
+                    type: 'info',
+                    message: 取消弹出文本
+                });
+            });
+        },
+        确认删除商品(index) {
+            this.确认删除商品对话(
+                '确定删除商品？',
+                '删除商品',
+                '再想想',
+                '确定',
+                '无事发生',
+                '删除商品成功!',
+                index
+            )
+        },
+    }    
+}
+
+
+
 </script>
 
-<style scoped>
-.merchant-goods {
-  margin: 20px;
-  background-color: rgb(229, 252, 252);
-}
-
-h2 {
-  font-size: 24px;
-  margin-bottom: 10px;
-}
-
-li {
-  margin-bottom: 20px;
-}
-
-h3 {
-  font-size: 20px;
-}
-
-p {
-  font-size: 16px;
-}
-
-form {
-  margin-top: 20px;
-}
-
-label {
-  display: block;
-  font-size: 16px;
-  margin-bottom: 5px;
-}
-
-input {
-  font-size: 16px;
-  padding: 5px;
-  margin-bottom: 10px;
-}
-
-button {
-  font-size: 16px;
-  padding: 5px 10px;
-  background-color: #4caf50;
-  color: #fff;
-  border: none;
-  cursor: pointer;
+<style>
+.单个购物车区域 {
+    height: auto;
+    display: flex;
+    flex-direction: row;
+    /**子类纵向排列 */
+    background-color: rgb(229, 252, 252);
+    border-width: 1px 0 0px 0;
+    border-style: solid;
+    border-color: black;
 }
 </style>

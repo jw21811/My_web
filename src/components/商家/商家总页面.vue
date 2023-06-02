@@ -7,10 +7,10 @@
             <el-container>
                 <el-aside class="侧边栏" width="100px">
                     <el-tabs :tab-position="tabPosition" @tab-click="handleClick" style="height: 200px; width:100px">
-                        <el-tab-pane label="Main"></el-tab-pane>
+                        <el-tab-pane label="主页"></el-tab-pane>
                         <el-tab-pane label="在售商品"></el-tab-pane>
                         <el-tab-pane label="待处理订单"></el-tab-pane>
-                        <el-tab-pane label="订单"></el-tab-pane>
+                        <el-tab-pane label="历史订单"></el-tab-pane>
                     </el-tabs>
                 </el-aside><!--此处存放侧边栏-->
                 <el-container>
@@ -67,7 +67,7 @@ export default{
         handleClick(tab)
         {
             /**用来处理标签页点击事件 */
-            if(tab.label == "Main")
+            if(tab.label == "主页")
             {
                 this.跳转到空白说明页面()
             }

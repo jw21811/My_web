@@ -16,7 +16,7 @@
             <div class="单个购物车区域" v-for="(Merchant, index) in merchants">
                 <el-col :span="12">
                 <div class="grid-content bg-purple" @click="跳转到商家页面(Merchant)">
-                    {{ Merchant.商家名称 }}
+                    id:{{ Merchant.id }}     {{ Merchant.name }}  
                 </div>
             </el-col>
             </div>
@@ -50,7 +50,6 @@ export default{
             }
             else
             {
-                /*
                 var address = '/customer/search?data='+this.input //字符串拼接，获得后端地址
                 this.axios
                 .get(address)
@@ -58,8 +57,6 @@ export default{
                     this.merchants = Return_info.data.detail
                     console.log(Return_info.data.detail)
                 })
-                */
-               this.merchants = 全局变量.模拟商家列表
             }
         },
         跳转到商家页面(Merchant) {
@@ -67,8 +64,8 @@ export default{
                 path: '/User/Page/Merchant',
                 query: {
                     user_id: this.user_id,
-                    merchant_id: Merchant.商家id,
-                    merchant_name:Merchant.商家名称,
+                    merchant_id: Merchant.id,
+                    merchant_name: Merchant.name,
                 }
             })
         },
@@ -98,36 +95,7 @@ export default{
                 type: 'success'
             });
         },
-    }
-    /*
-            确认加入购物车对话(内容, 标题, 取消文本, 确认文本, 取消弹出文本, 确认弹出文本, index) {
-            /**简易的对话框
-             * 当前为其分配了“向后端发送商品信息”的函数
-             * 传入参数已经用中文说明
-             * 若出现错误，会弹出“取消文本”
-             
-             this.$confirm(内容, 标题, {
-                confirmButtonText: 确认文本,
-                cancelButtonText: 取消文本,
-                type: 'warning'
-            }).then(() => {
-                this.$message({
-                    type: 'success',
-                    message: 确认弹出文本
-                });
-                this.向后端发送商品信息(index)
-            }).catch(() => {
-                this.$message({
-                    type: 'info',
-                    message: 取消弹出文本
-                });
-            });
-        },
-    
-    
-    */
-    
-    
+    }  
 }
 
 

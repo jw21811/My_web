@@ -26,15 +26,20 @@
             <div class="单个购物车区域" v-for="(Good, index) in goods">
                     <el-col :span="4">
                         <div>
-                            {{ Good.商品名称 }}
+                            {{ Good.name }}
+                        </div>
+                    </el-col>
+                    <el-col :span="4">
+                        <div>
+                            售出 {{ Good.sales_volume }} 份
                         </div>
                     </el-col>
                     <el-col :span="8">
                         <div>
                            规格: 
-                           <el-select v-model="format[index]" placeholder="请选择" :disabled=Good.是否售罄>
+                           <el-select v-model="format[index]" placeholder="请选择" :disabled=Good.is_sell_out>
                                 <el-option
-                                    v-for="item in Good.商品规格"
+                                    v-for="item in Good.specification"
                                     :key = index2
                                     :label="item"
                                     :value="item">
@@ -44,12 +49,12 @@
                     </el-col>
                     <el-col :span="4">
                         <div>
-                            单价: {{ 换算商品单价(Good,index) }} 元
+                            单价: {{ Good.price }} 元
                         </div>
                     </el-col>
                     <el-col :span="4">
                         <div>
-                            <el-button type="primary" icon="el-icon-shopping-cart-full" :disabled=Good.是否售罄 @click="添加入购物车(Good,index)">添加入购物车</el-button>
+                            <el-button type="primary" icon="el-icon-shopping-cart-full" :disabled=Good.is_sell_out @click="添加入购物车(Good,index)">添加入购物车</el-button>
                         </div>
                     </el-col>
             </div>
@@ -67,6 +72,8 @@ export default{
     data(){
         return{
             user_id:'',
+            merchant_id:'',
+            merchant_name:'',
             goods:[],
             format:[],
         }
@@ -76,7 +83,7 @@ export default{
         this.user_id = this.$route.query.user_id
         this.merchant_id = this.$route.query.merchant_id
         this.merchant_name = this.$route.query.merchant_name
-        this.goods = this.向后端获取商家商品(this.merchant_id)
+        this.向后端获取商家商品()
     },  
     methods:
     {
@@ -93,7 +100,7 @@ export default{
                 {
                     for(var j=0; j <全局变量.本地购物车列表[i].商品.length; j++)//若购物车已存在该商家的信息
                     {
-                        if(全局变量.本地购物车列表[i].商品[j].商品id === Good.商品id)//若购物车已存在该商家相同商品的信息
+                        if(全局变量.本地购物车列表[i].商品[j].商品id === Good.id)//若购物车已存在该商家相同商品的信息
                         {
                             if(全局变量.本地购物车列表[i].商品[j].商品规格 === this.format[index])//若商品规格相同
                             {
@@ -104,22 +111,22 @@ export default{
                         }
                     }
                     var good = {}
-                    good.商品id = Good.商品id
-                    good.商品名称 = Good.商品名称
+                    good.商品id = Good.id
+                    good.商品名称 = Good.name
                     good.商品规格 = this.format[index]
                     good.商品数量 = 1;
-                    good.商品单价 = this.换算商品单价(Good,index)
+                    good.商品单价 = Good.price
                     全局变量.本地购物车列表[i].商品.push(good)
                     //this.Alert_Success('新建商品记录')
                     return
                 }
             }
             var good = {}
-            good.商品id = Good.商品id
-            good.商品名称 = Good.商品名称
+            good.商品id = Good.id
+            good.商品名称 = Good.name
             good.商品规格 = this.format[index]
             good.商品数量 = 1;
-            good.商品单价 = this.换算商品单价(Good,index)
+            good.商品单价 = Good.price
             var merchant = {}
             merchant.商家id = this.merchant_id
             merchant.商家名称 = this.merchant_name
@@ -143,18 +150,16 @@ export default{
             }
             return 0
         },
-        向后端获取商家商品(merchant_id)
+        向后端获取商家商品()
         {
-            /*
-            var address = '/customer/getGoodsById?merchant_id='+ merchant_id //字符串拼接，获得后端地址
+            
+            var address = '/customer/getGoodsById?merchant_id='+ this.merchant_id //字符串拼接，获得后端地址
                 this.axios
                 .get(address)
                 .then((Return_info)=>{
-                    console.log(Return_info)
-                    return Return_info.data.detail
+                    this.goods =  Return_info.data.detail
+                    console.log(this.goods)
                 })
-                */
-               return 全局变量.模拟菜品列表
         },
         返回搜索页面()
         {
