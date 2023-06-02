@@ -35,6 +35,7 @@ export default {
         this.deliver_id = this.$route.query.deliver_id
 
         //此处的代码用于在页面创建时就获得用户的订单信息
+        /*
         var address = '/deliver/getOrder_WorkingById?deliver_id=' + this.deliver_id
         console.log(address)
         this.axios
@@ -42,7 +43,7 @@ export default {
             .then((Return_info) => {
                 this.订单列表 = Return_info.data.detail
             })
-
+*/
     },
     methods:
     {

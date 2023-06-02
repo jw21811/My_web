@@ -32,7 +32,7 @@
                     <el-col :span="8">
                         <div>
                            规格: 
-                           <el-select v-model="format[index]" placeholder="请选择">
+                           <el-select v-model="format[index]" placeholder="请选择" :disabled=Good.是否售罄>
                                 <el-option
                                     v-for="item in Good.商品规格"
                                     :key = index2
@@ -49,7 +49,7 @@
                     </el-col>
                     <el-col :span="4">
                         <div>
-                            <el-button type="primary" icon="el-icon-shopping-cart-full" @click="添加入购物车(Good,index)">添加入购物车</el-button>
+                            <el-button type="primary" icon="el-icon-shopping-cart-full" :disabled=Good.是否售罄 @click="添加入购物车(Good,index)">添加入购物车</el-button>
                         </div>
                     </el-col>
             </div>

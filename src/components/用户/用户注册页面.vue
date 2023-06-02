@@ -10,6 +10,9 @@
                     <el-input v-model="input_account" clearable="true" placeholder="输入账号" @change=""></el-input>
                     <el-input v-model="input_password1" show-password="false" placeholder="输入密码" @change=""></el-input>
                     <el-input v-model="input_password2" show-password="false" placeholder="确认密码" @change=""></el-input>
+                    <el-input v-model="input_name" clearable="true" placeholder="输入账号" @change=""></el-input>
+                    <el-input v-model="input_phone" clearable="true" placeholder="输入账号" @change=""></el-input>
+                    <el-input v-model="input_nickname" clearable="true" placeholder="输入账号" @change=""></el-input>
                     <el-button type="primary" icon="el-icon-position" @click="返回()">返回</el-button>
                     <el-button type="primary" icon="el-icon-position" @click="向后端发送注册请求()">注册</el-button>
 
@@ -28,6 +31,9 @@ export default{
             input_account:'',
             input_password1:'',
             input_password2:'',
+            input_name:'',
+            input_phone:'',
+            input_nickname:'',
             user_id:'',
         }
     },
@@ -68,7 +74,7 @@ export default{
                 this.Alert_Success('正在尝试注册...')
                 var address = `/customer/register?account=${this.input_account}&password=${this.input_password1}&name=${this.input_name}&phone=${this.input_phone}&nickname=${this.input_nickname}`
                 this.axios
-                .get(`/customer/register?account=${this.input_account}&password=${this.input_password1}`)
+                .get(address)
                 .then((Return_info)=> {
                     console.log(Return_info)
                     if(Return_info.data.status_code != 666)
