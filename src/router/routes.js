@@ -2,24 +2,37 @@
 import Login_Mode from '../components/登录模式选择'
 
 import User_Login from '../components/用户/用户登录页面'
-import User_Regsiter from '../components/用户/用户注册页面'
+import User_Register from '../components/用户/用户注册页面'
 import User_Main_Page from '../components/用户/用户总页面'
 import User_Page_Goods from '../components/用户/用户商品浏览页面'
 import User_Page_Cart from '../components/用户/用户购物车页面'
 import User_Page_Order from '../components/用户/用户订单页面'
-import User_Page_Search_Result from '../components/用户/用户搜索结果页面'
+import User_Page_Merchant from '../components/用户/用户商家商品页面'
 import User_Page_Empty_Info from '../components/用户/用户空白说明页面'
+import User_Page_Complaint from '../components/用户/用户投诉页面'
 
+<<<<<<< HEAD
 import Merchant_Login from '../components/商家/商家登录页面'
 import Merchant_Main_Page from '../components/商家/商家总页面'
 import Merchant_Page_Order from '../components/商家/商家待处理订单页面'
 import Merchant_Page_Goods from '../components/商家/商家商品页面'
 import Merchant_Page_Shop from '../components/商家/商家店铺页面'
 import Merchant_Page_AllOrder from '../components/商家/商家全部处理订单页面'
+=======
+import Deliver_Login from '../components/骑手/骑手登录页面'
+import Deliver_Register from '../components/骑手/骑手注册页面'
+import Deliver_Main_Page from '../components/骑手/骑手总页面'
+import Deliver_Page_Order_Market from '../components/骑手/骑手订单市场页面'
+import Deliver_Page_Order_History from '../components/骑手/骑手历史订单页面'
+import Deliver_Page_Order_Working from '../components/骑手/骑手待处理订单页面'
+import Deliver_Page_Complaint from '../components/骑手/骑手投诉页面'
+>>>>>>> 9309c90180abb310d627b5b6ac5d7d911be74499
 
-import Delivery_staff_Login from '../components/骑手/骑手登录页面'
 
-import Admin_Login from '../components/管理员/管理员登录页面'
+import 客服_Login from '../components/客服/客服登录页面'
+import 客服_Register from '../components/客服/客服注册页面'
+import 客服_Main_Page from '../components/客服/客服总页面'
+import 客服_Page_Working from '../components/客服/客服工作页面'
 
 
 
@@ -27,19 +40,21 @@ import Admin_Login from '../components/管理员/管理员登录页面'
 const routes = [
     { path: '/', component: Login_Mode },
     { path: '/User/Login', component: User_Login },//用户登陆页面
-    { path: '/User/Regsiter', component: User_Regsiter },//用户注册页面
+    { path: '/User/Register', component: User_Register },//用户注册页面
     {
         path: '/User/Page', component: User_Main_Page,//用户总页面，负责侧边栏与头像显示。包含了几个子页面
         children: [
             { path: '/User/Page/Info', component: User_Page_Empty_Info},
-            { path: '/User/Page/Search_Result',component: User_Page_Search_Result},
+            { path: '/User/Page/Merchant',component: User_Page_Merchant},
             { path: '/User/Page/Goods', component: User_Page_Goods },
             { path: '/User/Page/Cart', component: User_Page_Cart },
             { path: '/User/Page/Order', component: User_Page_Order },
+            { path: '/User/Page/Complaint',component: User_Page_Complaint},
         ]
     },
 
 
+<<<<<<< HEAD
     { path: '/Merchant/Login', component: Merchant_Login },//商家登录页面
     {
         path: '/Merchant/Page', component: Merchant_Main_Page,//商家总页面，负责侧边栏与头像显示。包含以下几个子页面
@@ -53,13 +68,31 @@ const routes = [
 
 
 
+=======
+>>>>>>> 9309c90180abb310d627b5b6ac5d7d911be74499
     
-    { path: '/Delivery_staff/Login', component: Delivery_staff_Login },//骑手登陆页面
+    
+    { path: '/Deliver/Login', component: Deliver_Login },//骑手登陆页面
+    { path: '/Deliver/Register', component: Deliver_Register },
+    { path: '/Deliver/Page', component: Deliver_Main_Page ,
+        children:[
+            { path: '/Deliver/Page/Order_Market', component: Deliver_Page_Order_Market},
+            { path: '/Deliver/Page/Order_History',component: Deliver_Page_Order_History},
+            { path: '/Deliver/Page/Order_Working', component: Deliver_Page_Order_Working },
+            { path: '/Deliver/Page/Complaint',component: Deliver_Page_Complaint},
+        ]
+    },
 
 
 
 
-    { path: '/Admin/Login', component: Admin_Login }//管理员登录页面
+    { path: '/客服/Login', component: 客服_Login },//管理员登录页面
+    { path: '/客服/Register', component: 客服_Register },
+    { path: '/客服/Page', component: 客服_Main_Page,
+        children:[
+            { path: '/客服/Page/Working', component: 客服_Page_Working }
+        ]
+    },
 
 ]
 export default routes

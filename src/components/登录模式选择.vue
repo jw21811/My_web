@@ -7,7 +7,7 @@
                 <el-button type="primary" icon="el-icon-position" @click="跳转到用户登录界面()">用户登录</el-button>
                 <el-button type="primary" icon="el-icon-position" @click="跳转到商户登录界面()">商户登录</el-button>
                 <el-button type="primary" icon="el-icon-position" @click="跳转到骑手登录界面()">骑手登录</el-button>
-                <el-button type="primary" icon="el-icon-position" @click="跳转到管理员登录界面()">管理员登录</el-button>
+                <el-button type="primary" icon="el-icon-position" @click="跳转到客服登录界面()">客服登录</el-button>
             </div>
         </div>
     </div>
@@ -40,13 +40,13 @@ export default {
         跳转到骑手登录界面()
         {
             this.$router.push({
-                path: '/Delivery_staff/Login',
+                path: '/Deliver/Login',
             })
         },
-        跳转到管理员登录界面()
+        跳转到客服登录界面()
         {
             this.$router.push({
-                path: '/Admin/Login',
+                path: '/客服/Login',
             })
         },
     }

@@ -7,6 +7,7 @@
                 <el-input v-model="input_account" clearable="true" placeholder="输入账号" @change=""></el-input>
                 <br>
                 <el-input v-model="input_password" show-password="false" placeholder="输入密码" @change=""></el-input>
+                <el-button type="primary" icon="el-icon-back" @click="返回()">返回</el-button>
                 <el-button type="primary" icon="el-icon-position" @click="向后端发送登录请求()">登录</el-button>
                 <el-button type="primary" icon="el-icon-position" @click="跳转到注册页面()">注册</el-button>
                 <el-button type="primary" icon="el-icon-position" @click="一键登录()">游客登录</el-button>
@@ -87,7 +88,7 @@ export default {
             if(this.input_account !='' &&this.input_password !='')
             {
                 this.axios
-                .get(`/user/login?name=${this.input_account},password=${this.input_password}`)//向后端接口传输
+                .get(`/customer/login?account=${this.input_account},password=${this.input_password}`)//向后端接口传输
                 .then((Return_info)=>{
                     if(Return_info.data == "invalid")
                     {
@@ -116,7 +117,7 @@ export default {
         跳转到注册页面()
         {
             this.$router.push({
-                path: '/Regsiter',
+                path: '/User/Register',
                 query:{
 
                 }
@@ -126,7 +127,17 @@ export default {
         {
             this.user_id="271dcbf40c9d464398507031343c0ead"//强行修改id（对应账号jw21811）
             this.跳转到总界面()
-        }
+        },
+        返回()
+        {
+            this.$router.push({
+                path: '/',
+                query:{
+
+                }
+            })
+        },
+        
     }
   }
 

@@ -28,7 +28,7 @@ export default{
             input_account:'',
             input_password1:'',
             input_password2:'',
-            user_id:'',
+            deliver_id:'',
         }
     },
     methods:
@@ -54,9 +54,8 @@ export default{
             else
             {
                 this.Alert_Success('正在尝试注册...')
-                console.log(`/customer/register?account=${this.input_account}&password=${this.input_password1}`)
                 this.axios
-                .get(`/customer/register?account=${this.input_account}&password=${this.input_password1}`)
+                .get(`/deliver/register?account=${this.input_account}&password=${this.input_password1}`)
                 .then((Return_info)=> {
                     if(Return_info.data !="OK")
                     {

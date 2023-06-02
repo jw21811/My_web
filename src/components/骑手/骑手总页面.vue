@@ -2,15 +2,14 @@
     <div class="背景">
         <el-container>
             <el-header class="顶栏" direction='vertical'>
-                    <div><el-button class="退出" type="text" size="mini" icon="el-icon-position" @click="退出登录()">退出登录</el-button>user_id:{{ user_id }}</div>
+                    <div><el-button class="退出" type="text" size="mini" icon="el-icon-position" @click="退出登录()">退出登录</el-button>deliver_id:{{ deliver_id }}</div>
             </el-header>
             <el-container>
                 <el-aside class="侧边栏" width="100px">
                     <el-tabs :tab-position="tabPosition" @tab-click="handleClick" style="height: 200px; width:100px">
-                        <el-tab-pane label="Main" ></el-tab-pane>
-                        <el-tab-pane label="商品浏览"></el-tab-pane>
-                        <el-tab-pane label="购物车"></el-tab-pane>
-                        <el-tab-pane label="我的订单"></el-tab-pane>
+                        <el-tab-pane label="待处理订单" ></el-tab-pane>
+                        <el-tab-pane label="订单市场"></el-tab-pane>
+                        <el-tab-pane label="历史订单"></el-tab-pane>
                         <el-tab-pane label="投诉"></el-tab-pane>
                     </el-tabs>
                 </el-aside><!--此处存放侧边栏-->
@@ -29,13 +28,13 @@
 export default{
     data(){
         return{
-            user_id:'',
+            deliver_id:'',
             tabPosition:'left',
         }
     },
     created(){
-        this.user_id=this.$route.query.user_id
-        this.跳转到空白说明页面()
+        this.deliver_id=this.$route.query.deliver_id
+        this.跳转到待处理订单页面()
     },
     methods:
     {
@@ -68,77 +67,64 @@ export default{
         handleClick(tab)
         {
             /**用来处理标签页点击事件 */
-            if(tab.label == "Main")
+            if(tab.label == "待处理订单")
             {
-                this.跳转到空白说明页面()
+                this.跳转到待处理订单页面()
             }
-            else if(tab.label=="商品浏览")
+            else if(tab.label=="历史订单")
             {
-                this.跳转到商品浏览页面()
+                this.跳转到历史订单页面()
             }
-            else if(tab.label=="购物车")
+            else if(tab.label=="订单市场")
             {
-                this.跳转到购物车页面()
-            }
-            else if(tab.label=="我的订单")
-            {
-                this.跳转到我的订单页面()
+                this.跳转到订单市场页面()
             }
             else if(tab.label == "投诉")
             {
                 this.Alert_Error('投诉')
-                this.跳转到用户投诉页面()
+                this.跳转到投诉页面()
             }
         },
-        跳转到空白说明页面()
+        跳转到待处理订单页面()
         {
             this.$router.push({
-                path: '/User/Page/Info',
+                path: '/Deliver/Page/Order_Working',
                 query:{
-                    user_id:this.user_id
+                    deliver_id:this.deliver_id
                 }
             })
         },
-        跳转到商品浏览页面()
+        跳转到历史订单页面()
         {
             this.$router.push({
-                path: '/User/Page/Goods',
+                path: '/Deliver/Page/Order_History',
                 query:{
-                    user_id:this.user_id
+                    deliver_id:this.deliver_id
                 }
             }) 
         },
-        跳转到购物车页面()
+        跳转到订单市场页面()
         {
             this.$router.push({
-                path: '/User/Page/Cart',
+                path: '/Deliver/Page/Order_Market',
                 query:{
-                    user_id:this.user_id
+                    deliver_id:this.deliver_id
                 }
             }) 
         },
-        跳转到我的订单页面()
+        跳转到投诉页面()
         {
             this.$router.push({
-                path: '/User/Page/Order',
+                path: '/Deliver/Page/Complaint',
                 query:{
-                    user_id:this.user_id
-                }
-            })
-        },
-        跳转到用户投诉页面()
-        {
-            this.$router.push({
-                path: '/User/Page/Complaint',
-                query:{
-                    user_id:this.user_id
+                    deliver_id:this.deliver_id
                 }
             })
         },
         退出登录()
         {
             this.$router.push({
-                path: '/User/Login',
+                path: '/Deliver/Login',
                 query:{
                 }
             })

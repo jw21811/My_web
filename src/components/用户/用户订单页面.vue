@@ -49,7 +49,7 @@ export default{
         this.user_id=this.$route.query.user_id
         
         /*此处的代码用于在页面创建时就获得用户的订单信息
-        var address = '/user/getOrderById?userId=' + this.user_id
+        var address = '/costomer/getOrderById?customer_id=' + this.user_id
         this.axios
             .get(address)
             .then((Return_info) => {
@@ -117,7 +117,7 @@ export default{
 }
 .分隔
 {
-    width:75px;
+    width:100px;
     display: flex;
 }
 .背景
