@@ -36,16 +36,16 @@ export default{
 
     data(){
         return{
-            user_id:'',
+            merchant_id:'',
             订单列表:[{"order":{"id":'001',"time":'2023-5-31-17-00-00',"addr":"广西桂林"},"goods":[{"name":'cjd',"format":'large',"number":'2'},{"name":'cjd',"format":'large',"number":'2'},{"name":'cjd',"format":'large',"number":'2'}]},
                     {"order":{"id":'001',"time":'2023-5-31-17-00-00',"addr":"金鸡岭"},"goods":[{"name":'cjd',"format":'large',"number":'2'}]}],
         }
     },
     mounted(){
-        this.user_id=this.$route.query.user_id
+        this.merchant_id=this.$route.query.merchant_id
         
         //此处的代码用于在页面创建时就获得用户的订单信息
-        var address = '/merchant/getWaittingListByld?id=' + this.user_id
+        var address = '/merchant/getWaittingListByld?id=' + this.merchant_id
         this.axios
             .get(address)
             .then((Return_info) => {

@@ -84,14 +84,14 @@ export default {
              * 后端返回值：
              * 用户id：user_id
             */
-            var that = this;//用来保存当前的对象
             if(this.input_account !='' &&this.input_password !='')
             {
                 var address = `/customer/login?account=${this.input_account}&password=${this.input_password}`
+                console.log(address)
                 this.axios
                 .get(address)//向后端接口传输
                 .then((Return_info)=>{
-                    console.log(Return_info)
+                    
                     if(Return_info.data.status_code == 667)
                     {
                         this.Alert_Error("账号或密码错误！")

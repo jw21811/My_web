@@ -95,7 +95,7 @@ export default {
                     }
                     else
                     {
-                        this.deliver_id=Return_info.data//通过后端返回值修改用户id
+                        this.deliver_id=Return_info.data.detail//通过后端返回值修改用户id
                         this.跳转到总界面()//跳转到商品页面
                     }
                 })

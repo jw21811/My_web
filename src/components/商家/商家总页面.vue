@@ -2,7 +2,7 @@
     <div class="背景">
         <el-container>
             <el-header class="顶栏" direction='vertical'>
-                    <div><el-button class="退出" type="text" size="mini" icon="el-icon-position" @click="退出登录()">退出登录</el-button>user_id:{{ user_id }}</div>
+                    <div><el-button class="退出" type="text" size="mini" icon="el-icon-position" @click="退出登录()">退出登录</el-button>merchant_id:{{ merchant_id }}</div>
             </el-header>
             <el-container>
                 <el-aside class="侧边栏" width="100px">
@@ -28,12 +28,12 @@
 export default{
     data(){
         return{
-            user_id:'',
+            merchant_id:'',
             tabPosition:'left',
         }
     },
     created(){
-        this.user_id=this.$route.query.user_id
+        this.merchant_id=this.$route.query.merchant_id
         this.跳转到空白说明页面()
     },
     methods:
@@ -90,7 +90,7 @@ export default{
             this.$router.push({
                 path: '/Merchant/Page/Shop',
                 query:{
-                    user_id:this.user_id
+                    merchant_id:this.merchant_id
                 }
             })
         },
@@ -99,7 +99,7 @@ export default{
             this.$router.push({
                 path: '/Merchant/Page/Goods',
                 query:{
-                    user_id:this.user_id
+                    merchant_id:this.merchant_id
                 }
             }) 
         },
@@ -108,7 +108,7 @@ export default{
             this.$router.push({
                 path: '/Merchant/Page/Order',
                 query:{
-                    user_id:this.user_id
+                    merchant_id:this.merchant_id
                 }
             }) 
         },
@@ -117,7 +117,7 @@ export default{
             this.$router.push({
                 path: '/Merchant/Page/AllOrder',
                 query:{
-                    user_id:this.user_id
+                    merchant_id:this.merchant_id
                 }
             })
         },

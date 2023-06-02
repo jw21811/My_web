@@ -55,10 +55,9 @@ const routes = [
     },
 
     { path: '/Merchant/Login', component: Merchant_Login },//商家登录页面
-    {
-        path: '/Merchant/Page', component: Merchant_Main_Page,//商家总页面，负责侧边栏与头像显示。包含以下几个子页面
+    { path: '/Merchant/Register',component: Merchant_Register},
+    {   path: '/Merchant/Page', component: Merchant_Main_Page,//商家总页面，负责侧边栏与头像显示。包含以下几个子页面
         children: [
-            { path: '/Merchant/Register',component: Merchant_Register },
             { path: '/Merchant/Page/AllOrder',component: Merchant_Page_AllOrder },//商家全部处理订单页面
             { path: '/Merchant/Page/Order', component: Merchant_Page_Order },//商家待处理订单页面
             { path: '/Merchant/Page/Goods', component: Merchant_Page_Goods },//商家商品页面
