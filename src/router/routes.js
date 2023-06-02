@@ -11,13 +11,6 @@ import User_Page_Merchant from '../components/用户/用户商家商品页面'
 import User_Page_Empty_Info from '../components/用户/用户空白说明页面'
 import User_Page_Complaint from '../components/用户/用户投诉页面'
 
-import Merchant_Login from '../components/商家/商家登录页面'
-import Merchant_Main_Page from '../components/商家/商家总页面'
-import Merchant_Page_Order from '../components/商家/商家待处理订单页面'
-import Merchant_Page_Goods from '../components/商家/商家商品页面'
-import Merchant_Page_Shop from '../components/商家/商家店铺页面'
-import Merchant_Page_AllOrder from '../components/商家/商家全部处理订单页面'
-
 import Deliver_Login from '../components/骑手/骑手登录页面'
 import Deliver_Register from '../components/骑手/骑手注册页面'
 import Deliver_Main_Page from '../components/骑手/骑手总页面'
