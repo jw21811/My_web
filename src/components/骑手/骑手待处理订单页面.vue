@@ -76,10 +76,10 @@ export default {
         向后端发送新订单状态(id, status) {
             var address = ''
             if (status == 'yes') {
-                address = '/deliver/setOrder_Status?deliver_id=' + this.deliver_id + '&order_id=' + id + '&new_order_status=next'
+                address = '/deliver/setOrder_Status?deliver_id=' + this.deliver_id + '&order_id=' + id + '&new_order_status=Finished'
             }
             else {
-                address = '/deliver/setOrder_Status?deliver_id=' + this.deliver_id + '&order_id=' + id + '&new_order_status=back'
+                address = '/deliver/setOrder_Status?deliver_id=' + this.deliver_id + '&order_id=' + id + '&new_order_status=Ready'
             }
             console.log(address)
             this.axios

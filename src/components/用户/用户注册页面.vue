@@ -5,14 +5,14 @@
             <div class="登录框">
                 <h2 class="标题文字" @click="">e-Shop</h2>
                 <div style="margin-top: 15px;">
-
-
                     <el-input v-model="input_account" clearable="true" placeholder="输入账号" @change=""></el-input>
                     <el-input v-model="input_password1" show-password="false" placeholder="输入密码" @change=""></el-input>
                     <el-input v-model="input_password2" show-password="false" placeholder="确认密码" @change=""></el-input>
+                    <el-input v-model="input_nickname" clearable="true"  placeholder="输入昵称" @change=""></el-input>
+                    <el-input v-model="input_name" clearable="true"  placeholder="输入真实姓名" @change=""></el-input>
+                    <el-input v-model="input_phone" clearable="true"  placeholder="输入手机号" @change=""></el-input>
                     <el-button type="primary" icon="el-icon-position" @click="返回()">返回</el-button>
                     <el-button type="primary" icon="el-icon-position" @click="向后端发送注册请求()">注册</el-button>
-
                 </div>
             </div>
         </div>
@@ -22,12 +22,16 @@
 <script>
 
 
+
 export default{
     data(){
         return{
             input_account:'',
             input_password1:'',
             input_password2:'',
+            input_name:'',
+            input_phone:'',
+            input_nickname:'',
             user_id:'',
         }
     },
@@ -51,12 +55,17 @@ export default{
             {
                 this.Alert_Error('两次输入的密码不一致！')
             }
-            else
+            else if(this.input_nickname == '' || this.input_phone == '' || this.input_name == '')
+            {
+                this.Alert_Error('请填写完整信息！')
+            }
+            else 
             {
                 this.Alert_Success('正在尝试注册...')
-                console.log(`/customer/register?account=${this.input_account}&password=${this.input_password1}`)
+                var address = `/customer/register?account=${this.input_account}&password=${this.input_password1}&name=${this.input_name}&phone=${this.input_phone}&nickname=${this.input_nickname}`
+                console.log(address)
                 this.axios
-                .get(`/customer/register?account=${this.input_account}&password=${this.input_password1}`)
+                .get(address)
                 .then((Return_info)=> {
                     if(Return_info.data !="OK")
                     {

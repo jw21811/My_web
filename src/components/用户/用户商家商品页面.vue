@@ -29,10 +29,15 @@
                             {{ Good.商品名称 }}
                         </div>
                     </el-col>
+                    <el-col :span="4">
+                        <div>
+                           销量: {{ Good.销量 }}
+                        </div>
+                    </el-col>
                     <el-col :span="8">
                         <div>
                            规格: 
-                           <el-select v-model="format[index]" placeholder="请选择">
+                           <el-select v-model="format[index]" :placeholder=是否售罄(Good.是否售罄) :disabled=Good.是否售罄>
                                 <el-option
                                     v-for="item in Good.商品规格"
                                     :key = index2
@@ -49,7 +54,7 @@
                     </el-col>
                     <el-col :span="4">
                         <div>
-                            <el-button type="primary" icon="el-icon-shopping-cart-full" @click="添加入购物车(Good,index)">添加入购物车</el-button>
+                            <el-button type="primary" icon="el-icon-shopping-cart-full" :disabled=Good.是否售罄  @click="添加入购物车(Good,index)">{{ 是否售罄(Good.是否售罄) }}</el-button>
                         </div>
                     </el-col>
             </div>
@@ -69,6 +74,7 @@ export default{
             user_id:'',
             goods:[],
             format:[],
+            disabled:[],
         }
 
     },
@@ -80,6 +86,17 @@ export default{
     },  
     methods:
     {
+        是否售罄(a)
+        {
+            if(a==true)
+            {
+                return '已售罄'
+            }
+            else
+            {
+                return '加入购物车'
+            }
+        },
         添加入购物车(Good,index)
         {
             if(this.format[index]==null)

@@ -19,6 +19,12 @@ import Deliver_Page_Order_History from '../components/骑手/骑手历史订单�
 import Deliver_Page_Order_Working from '../components/骑手/骑手待处理订单页面'
 import Deliver_Page_Complaint from '../components/骑手/骑手投诉页面'
 
+import Merchant_Login from '../components/商家/商家登录页面'
+import Merchant_Main_Page from '../components/商家/商家总页面'
+import Merchant_Page_Order from '../components/商家/商家待处理订单页面'
+import Merchant_Page_Goods from '../components/商家/商家商品页面'
+import Merchant_Page_Shop from '../components/商家/商家店铺页面'
+import Merchant_Page_AllOrder from '../components/商家/商家全部处理订单页面'
 
 import 客服_Login from '../components/客服/客服登录页面'
 import 客服_Register from '../components/客服/客服注册页面'
@@ -44,6 +50,16 @@ const routes = [
         ]
     },
 
+    { path: '/Merchant/Login', component: Merchant_Login },//商家登录页面
+    {
+        path: '/Merchant/Page', component: Merchant_Main_Page,//商家总页面，负责侧边栏与头像显示。包含以下几个子页面
+        children: [
+            { path: '/Merchant/Page/AllOrder',component: Merchant_Page_AllOrder },//商家全部处理订单页面
+            { path: '/Merchant/Page/Order', component: Merchant_Page_Order },//商家待处理订单页面
+            { path: '/Merchant/Page/Goods', component: Merchant_Page_Goods },//商家商品页面
+            { path: '/Merchant/Page/Shop', component: Merchant_Page_Shop },//商家店铺页面
+        ]
+    },
 
     
     
