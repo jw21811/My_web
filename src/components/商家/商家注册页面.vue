@@ -3,7 +3,7 @@
     <body>
         <div class="背景">
             <div class="登录框">
-                <h2 class="标题文字" @click="">注册</h2>
+                <h2 class="标题文字" @click="">e-Shop</h2>
                 <div style="margin-top: 15px;">
 
 
@@ -28,7 +28,7 @@ export default{
             input_account:'',
             input_password1:'',
             input_password2:'',
-            user_id:'',
+            merchant_id:'',
         }
     },
     methods:
@@ -51,35 +51,21 @@ export default{
             {
                 this.Alert_Error('两次输入的密码不一致！')
             }
-            else if(this.input_nickname == '' || this.input_phone == '' || this.input_name == '')
-            {
-                this.Alert_Error('请填写完整信息！')
-            }
-            else if(this.input_password1.length < 6)
-            {
-                this.Alert_Error('Try something longer')
-            }
-            else if(this.input_password1.length >16 && this.input_password1.length < 6)
-            {
-                this.Alert_Error('密码长度应在6至16位之间')
-            }
-            else 
+            else
             {
                 this.Alert_Success('正在尝试注册...')
-                var address = `/customer/register?account=${this.input_account}&password=${this.input_password1}&name=${this.input_name}&phone=${this.input_phone}&nickname=${this.input_nickname}`
                 this.axios
-                .get(`/customer/register?account=${this.input_account}&password=${this.input_password1}`)
+                .get(`/deliver/register?account=${this.input_account}&password=${this.input_password1}`)
                 .then((Return_info)=> {
-                    console.log(Return_info)
-                    if(Return_info.data.status_code != 666)
+                    if(Return_info.data !="OK")
                     {
-                        if(Return_info.data.status_code == 668)
+                        if(Return_info.data == "isexist")
                         {
-                            this.Alert_Error(`注册失败——用户已存在！错误代码：${Return_info.data.detail}`)
+                            this.Alert_Error(`注册失败——用户已存在！错误代码：${Return_info.data}`)
                         }
                         else
                         {
-                            this.Alert_Error(`注册失败——未知错误  错误代码：${Return_info.data.detail}`)
+                            this.Alert_Error(`注册失败——未知错误  错误代码：${Return_info.data}`)
                         }
                     }
                     else
@@ -128,8 +114,8 @@ export default{
 
 .注册框
 {
-    height: 600px;
-    width: 600px;
+    height: 400px;
+    width: 400px;
     float: center;
     background-color: lightpink;
 }

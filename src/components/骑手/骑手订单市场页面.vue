@@ -11,6 +11,7 @@
             <div class="划分区域_子类纵向排列">
                 <div>商家地址:<br>{{ Order.订单商家地址 }}</div>
                 <div>配送地址：<br>{{ Order.订单配送地址 }}</div>
+                <div>顾客电话:<br>{{ Order.顾客电话 }}</div>
             </div>
         </div>
     </div>
@@ -72,7 +73,7 @@
             },
             向后端发送新订单状态(id, status)
              {
-                var address = '/deliver/setOrder_Status?deliver_id=' + this.deliver_id + '&order_id=' + id + '&new_order_status=Delivering'
+                var address = '/deliver/setOrder_Status?deliver_id=' + this.deliver_id + '&order_id=' + id + '&new_order_status=next'
                 console.log(address)
                 this.axios
                         .get(address)//向后端接口传输
