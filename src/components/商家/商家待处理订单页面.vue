@@ -7,8 +7,7 @@
             <div>配送地址:<br>{{ Order.order.addr }}</div>
             <div>备注:<br>{{ Order.order.notes }}</div>        
             <div>
-                    <el-button type="danger" @click="确认放弃订单(Order.id)">取消配送</el-button>
-                    <el-button type="primary" @click="确认完成配送(Order.id)">完成订单</el-button>
+                    <el-button type="danger" @click="确认配送(Order.id)">确认配送</el-button>
             </div>
         </div>
 
@@ -97,72 +96,48 @@ export default{
 
                 })
         },
-        确认放弃订单(id) {
-            this.确认放弃订单对话(
-                '确定放弃订单？',
-                '放弃订单',
+        确认配送(id) {
+            this.确认配送对话(
+                '确定接受配送？',
+                '确认配送',
                 '再想想',
                 '确定',
                 '无事发生',
-                '放弃订单成功!',
+                '确认接受配送!',
                 id
             )
         },
-        确认放弃订单对话(内容, 标题, 取消文本, 确认文本, 取消弹出文本, 确认弹出文本, id) {
+        确认配送对话(内容, 标题, 取消文本, 确认文本, 取消弹出文本, 确认弹出文本, id) {
             /**简易的对话框
              * 当前为其分配了“向后端发送商品信息”的函数
              * 传入参数已经用中文说明
              */
-            this.$confirm(内容, 标题, {
-                confirmButtonText: 确认文本,
-                cancelButtonText: 取消文本,
-                type: 'warning'
-            }).then(() => {
-                this.$message({
-                    type: 'success',
-                    message: 确认弹出文本
-                });
-                this.向后端发送新订单状态(id, 'no')
-            }).catch(() => {
-                this.$message({
-                    type: 'info',
-                    message: 取消弹出文本
-                });
-            });
-        },
-        确认完成配送(id) {
-            this.确认完成配送对话(
-                '确定完成配送？',
-                '完成配送',
-                '再想想',
-                '确定',
-                '无事发生',
-                '完成配送成功!',
-                id
-            )
-        },
-        确认完成配送对话(内容, 标题, 取消文本, 确认文本, 取消弹出文本, 确认弹出文本, id) {
-            /**简易的对话框
-             * 当前为其分配了“向后端发送商品信息”的函数
-             * 传入参数已经用中文说明
-             */
-            this.$confirm(内容, 标题, {
-                confirmButtonText: 确认文本,
-                cancelButtonText: 取消文本,
-                type: 'warning'
-            }).then(() => {
-                this.$message({
-                    type: 'success',
-                    message: 确认弹出文本
-                });
-                this.向后端发送新订单状态(id, 'yes')
-            }).catch(() => {
-                this.$message({
-                    type: 'info',
-                    message: 取消弹出文本
-                });
-            });
-        },
+            // Find the order by ID
+      const order = this.pendingOrders.find(order => order.id === orderId);
+      if (!order) {
+        console.error("Order not found");
+        return;
+      }
+
+      // Perform confirmation logic here, e.g., send request to backend API
+      // with the orderId to mark the order as delivered
+      // You can use Axios or any other HTTP library for making the request
+
+      // Example using Axios
+      axios
+        .post(`/merchant/confirmDelivery`, { orderId })
+        .then(response => {
+          // Update the order status to "Delivered"
+          order.status = "Delivered";
+
+          // Confirmation successful
+          console.log("Delivery confirmed for order ID:", orderId);
+        })
+        .catch(error => {
+          // Handle error
+          console.error("Error confirming delivery:", error);
+        });
+    },
     
     
     }

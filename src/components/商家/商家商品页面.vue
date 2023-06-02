@@ -9,6 +9,7 @@
         <p>Format: {{ goods.format }}</p>
         <p>Price(价格): {{ goods.price }}</p>
         <p>SaledNumber(数量): {{ goods.saledNumber }}</p>
+        <button @click="removeGoods(goods.id)">Remove</button>
       
     </li>
     </ul>
@@ -102,6 +103,7 @@ export default {
           console.error(error);
         });
     },
+    
     updatePrice(goods) {
     axios
       .post("/merchant/updateGoods", {
@@ -115,7 +117,34 @@ export default {
       .catch(error => {
         console.error(error);
       });
-  }
+  },
+  removeGoods(goodsId) {
+      // Find the goods by ID
+      const goodsIndex = this.merchantGoods.findIndex(goods => goods.id === goodsId);
+      if (goodsIndex === -1) {
+        console.error("Goods not found");
+        return;
+      }
+
+      // Perform removal logic here, e.g., send request to backend API
+      // with the goodsId to remove the goods from the merchant's inventory
+      // You can use Axios or any other HTTP library for making the request
+
+      // Example using Axios
+      axios
+        .post(`/merchant/removeGoods`, { goodsId })
+        .then(response => {
+          // Remove the goods from the merchantGoods array
+          this.merchantGoods.splice(goodsIndex, 1);
+
+          // Removal successful
+          console.log("Goods removed successfully:", goodsId);
+        })
+        .catch(error => {
+          // Handle error
+          console.error("Error removing goods:", error);
+        });
+    }
   }
 };
 </script>
