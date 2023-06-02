@@ -64,8 +64,32 @@ var 模拟菜品列表 = [
     },
 
 
+<<<<<<< HEAD
+var 本地商品列表 = [
+    {
+        name:'粥道',
+        address:'广西',
+        contact:'123456',
+        sellmoney:'13412'
+    }
+]
+var 本地上架商品列表 = [
+    {
+        name:'product 1',
+        format:'JSON',
+        price:'10',
+        saledNumber:'50'
+    },
+    {
+        name:'product 2',
+        format:'JSON',
+        price:'12',
+        saledNumber:'51'
+    }
+=======
 
 
+>>>>>>> 9309c90180abb310d627b5b6ac5d7d911be74499
 ]
 
 var 模拟商家列表 = [
@@ -178,9 +202,13 @@ var 本地购物车列表 = [
 export default
     {
         本地购物车列表,
+<<<<<<< HEAD
+        本地商品列表,
+        本地上架商品列表
+=======
         模拟菜品列表,
         模拟商家列表,
-        本地上架商品列表,
+>>>>>>> 9309c90180abb310d627b5b6ac5d7d911be74499
     }
 
 
