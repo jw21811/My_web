@@ -1,5 +1,6 @@
 <template>
     <div>
+        <div>{{ 购物车是否为空() }}</div>
         <div class="单个购物车区域" v-for="(Merchant, index) in 购物车列表">
             <el-container>
                 <el-header>{{ Merchant.商家名称 }}</el-header>
@@ -53,6 +54,13 @@ export default{
     },
     methods:
     {   
+        购物车是否为空()
+        {
+            if(this.购物车列表.length == 0)
+            {
+                return '购物车空空如也'
+            }
+        },
         计算订单总价(Merchant)
         {
             var total = 0
@@ -98,6 +106,8 @@ export default{
             address += Merchant.备注
             address += '&customer_address='
             address += Merchant.配送地址
+            address += '&total_price='
+            address += this.计算订单总价(Merchant)
             console.log(address)
             
             this.axios

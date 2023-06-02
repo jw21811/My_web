@@ -89,7 +89,7 @@ export default {
                 this.axios
                 .get(`/deliver/login?account=${this.input_account}&password=${this.input_password}`)//向后端接口传输
                 .then((Return_info)=>{
-                    if(Return_info.data == "invalid")
+                    if(Return_info.data.status_code == 667)
                     {
                         this.Alert_Error("账号或密码错误！")
                     }

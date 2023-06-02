@@ -90,13 +90,13 @@ export default {
                 this.axios
                 .get(`/customer/login?account=${this.input_account},password=${this.input_password}`)//向后端接口传输
                 .then((Return_info)=>{
-                    if(Return_info.data == "invalid")
+                    if(Return_info.data.status_code == 667)
                     {
                         this.Alert_Error("账号或密码错误！")
                     }
                     else
                     {
-                        this.user_id=Return_info.data//通过后端返回值修改用户id
+                        this.user_id=Return_info.data.detail//通过后端返回值修改用户id
                         this.跳转到总界面()//跳转到商品页面
                     }
                 })
@@ -148,8 +148,8 @@ export default {
 <style>
 .登录框
 {
-    height: 400px;
-    width: 400px;
+    height: 600px;
+    width: 600px;
     float: right;
     background-color: lightpink;
     position:fixed;
@@ -159,16 +159,10 @@ export default {
     display: flex;
     flex-direction: column;
     align-items: center;
-    width: 400px;
     padding: 80px;
 
 }
-.背景
-{
-    height: 1920px;
-    width: 100%;
-    background-image: linear-gradient(to right, #00f2fe 0%, #4facfe 100%);
-}
+
 .标题文字{
 	overflow: hidden;
 	position: relative;

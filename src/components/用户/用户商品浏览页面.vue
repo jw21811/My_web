@@ -55,8 +55,8 @@ export default{
                 this.axios
                 .get(address)
                 .then((Return_info)=>{
-                    this.merchants = Return_info
-                    console.log(Return_info)
+                    this.merchants = Return_info.data.detail
+                    console.log(Return_info.data.detail)
                 })
                 */
                this.merchants = 全局变量.模拟商家列表

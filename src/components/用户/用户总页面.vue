@@ -1,21 +1,22 @@
 <template>
-    <div class="背景">
+    <div class="Main背景">
         <el-container>
-            <el-header class="顶栏" direction='vertical'>
+            <el-header direction='vertical'>
                     <div><el-button class="退出" type="text" size="mini" icon="el-icon-position" @click="退出登录()">退出登录</el-button>user_id:{{ user_id }}</div>
             </el-header>
             <el-container>
-                <el-aside class="侧边栏" width="100px">
-                    <el-tabs :tab-position="tabPosition" @tab-click="handleClick" style="height: 200px; width:100px">
+                <el-aside class="侧边栏" width="100px" height='720px'>
+                    <el-tabs :tab-position="tabPosition" @tab-click="handleClick" style="height: 400px; width:100px">
                         <el-tab-pane label="Main" ></el-tab-pane>
                         <el-tab-pane label="商品浏览"></el-tab-pane>
                         <el-tab-pane label="购物车"></el-tab-pane>
                         <el-tab-pane label="我的订单"></el-tab-pane>
+                        <el-tab-pane label="我的信息"></el-tab-pane>
                         <el-tab-pane label="投诉"></el-tab-pane>
                     </el-tabs>
                 </el-aside><!--此处存放侧边栏-->
                 <el-container>
-                    <el-main>
+                    <el-main class="Main背景">
                         <router-view></router-view><!--此处存放其他页面-->
                     </el-main>
                 </el-container>
@@ -86,14 +87,26 @@ export default{
             }
             else if(tab.label == "投诉")
             {
-                this.Alert_Error('投诉')
                 this.跳转到用户投诉页面()
             }
+            else if(tab.label == "我的信息")
+            {
+                this.跳转到我的信息页面()
+            }
+        },
+        跳转到我的信息页面()
+        {
+            this.$router.push({
+                path: '/User/Page/Info',
+                query:{
+                    user_id:this.user_id
+                }
+            })
         },
         跳转到空白说明页面()
         {
             this.$router.push({
-                path: '/User/Page/Info',
+                path: '/User/Page/Main',
                 query:{
                     user_id:this.user_id
                 }
@@ -152,5 +165,19 @@ export default{
 .退出
 {
     color: #000;
+}
+.Main背景
+{
+
+    width: 100vw; /* 使用视口宽度作为容器的宽度 */
+    height: 100vh; /* 使用视口高度作为容器的高度 */
+    background-image: linear-gradient(to right, #00f2fe 0%, #4facfe 100%);
+}
+.侧边栏{
+    height: 100vh; /* 使用视口高度作为容器的高度 */
+}
+.full-container {
+  width: 100%;
+  height: 100%;
 }
 </style>

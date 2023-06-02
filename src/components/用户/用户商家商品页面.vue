@@ -168,7 +168,7 @@ export default{
                 .get(address)
                 .then((Return_info)=>{
                     console.log(Return_info)
-                    return Return_info
+                    return Return_info.data.detail
                 })
                 */
                return 全局变量.模拟菜品列表

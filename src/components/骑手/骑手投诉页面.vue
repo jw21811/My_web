@@ -49,7 +49,7 @@ export default {
             this.axios
             .get(address)
             .then((Return_info)=>{
-                if(Return_info != 'ok')
+                if(Return_info.data.detail != 'ok')
                 {
                     this.Alert_Error('未成功上传投诉')
                 }

@@ -54,15 +54,15 @@ export default{
                 this.axios
                 .get(`/customer_server/register?account=${this.input_account}&password=${this.input_password1}`)
                 .then((Return_info)=> {
-                    if(Return_info.data !="OK")
+                    if(Return_info.data.status_code !=666)
                     {
-                        if(Return_info.data == "isexist")
+                        if(Return_info.data.status_code == 668)
                         {
-                            this.Alert_Error(`注册失败——用户已存在！错误代码：${Return_info.data}`)
+                            this.Alert_Error(`注册失败——用户已存在！错误代码：${Return_info.data.detail}`)
                         }
                         else
                         {
-                            this.Alert_Error(`注册失败——未知错误  错误代码：${Return_info.data}`)
+                            this.Alert_Error(`注册失败——未知错误  错误代码：${Return_info.data.detail}`)
                         }
                     }
                     else
