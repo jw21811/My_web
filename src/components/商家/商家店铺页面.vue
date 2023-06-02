@@ -1,26 +1,26 @@
 <template>
   <div>
   <div class="merchant-detail">
-    <h2 class="merchant-name">name(名称):{{ merchant.name }}</h2>
-    <p class="merchant-info">Address(地址): {{ merchant.address }}</p>
-    <p class="merchant-info">Contact(联系): {{ merchant.contact }}</p>
-    <p class="merchant-info">SellMoney(营业额): {{ merchant.sellmoney }}</p>
+    <h2 class="merchant-name">名称:{{ merchant.name }}</h2>
+    <p class="merchant-info">地址: {{ merchant.address }}</p>
+    <p class="merchant-info">联系: {{ merchant.contact }}</p>
+    <p class="merchant-info">营业额: {{ merchant.sellmoney }}</p>
     <!-- 其他商家信息展示区域 -->
     
     <h3>投诉页面</h3>
     <form @submit.prevent="submitComplaint">
-      <label for="name">Name(名称):</label>
+      <label for="name">名称:</label>
       <input type="text" id="name" v-model="complaint.name" required>
-      <label for="email">Email(邮箱):</label>
+      <label for="email">邮箱:</label>
       <input type="email" id="email" v-model="complaint.email" required>
-      <label for="message">Message(信息):</label>
+      <label for="message">信息:</label>
       <textarea id="message" v-model="complaint.message" required></textarea>
-      <button type="submit">Submit(提交)</button>
+      <button type="submit">提交</button>
     </form>
   </div>
   
-  <p>Business Status: {{ merchant.businessStatus ? 'Open' : 'Closed' }}</p>
-  <button @click="toggleBusinessStatus">Change Business Status</button>
+  <p>经营状态: {{ merchant.businessStatus ? 'Open' : 'Closed' }}</p>
+  <button @click="toggleBusinessStatus">改变经营状态</button>
   </div>
 </template>
 

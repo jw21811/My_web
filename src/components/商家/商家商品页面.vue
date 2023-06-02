@@ -1,30 +1,30 @@
 <template>
   <div class="merchant-goods">
-    <h2>Merchant Goods</h2>
+    <h2>商品名称</h2>
     
     <ul>
       
       <li v-for="goods in merchantGoods" :key="goods.name">
-          <h3>Name(名称): {{ goods.name }}</h3>
-        <p>Format: {{ goods.format }}</p>
-        <p>Price(价格): {{ goods.price }}</p>
-        <p>SaledNumber(数量): {{ goods.saledNumber }}</p>
-        <button @click="removeGoods(goods.id)">Remove</button>
+          <h3>名称: {{ goods.name }}</h3>
+        <p>规格: {{ goods.format }}</p>
+        <p>价格: {{ goods.price }}</p>
+        <p>数量: {{ goods.saledNumber }}</p>
+        <button @click="removeGoods(goods.id)">删除商品</button>
       
     </li>
     </ul>
     
     <form @submit.prevent="addNewGoods">
-      <h3>Add New Goods</h3>
-      <label for="name">Name:</label>
+      <h3>添加商品</h3>
+      <label for="name">名称:</label>
       <input type="text" id="name" v-model="newGoods.name" required>
-      <label for="format">Format:</label>
+      <label for="format">规格:</label>
       <input type="text" id="format" v-model="newGoods.format" required>
-      <label for="price">Price:</label>
+      <label for="price">价格:</label>
       <input type="number" id="price" v-model="newGoods.price" required>
-      <label for="saledNumber">Saled Number:</label>
+      <label for="saledNumber">数量:</label>
       <input type="number" id="saledNumber" v-model="newGoods.saledNumber" required>
-      <button type="submit">Add</button>
+      <button type="submit">添加</button>
     </form>
   </div>
 </template>

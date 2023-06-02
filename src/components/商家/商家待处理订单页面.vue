@@ -112,31 +112,22 @@ export default{
              * 当前为其分配了“向后端发送商品信息”的函数
              * 传入参数已经用中文说明
              */
-            // Find the order by ID
-      const order = this.pendingOrders.find(order => order.id === orderId);
-      if (!order) {
-        console.error("Order not found");
-        return;
-      }
-
-      // Perform confirmation logic here, e.g., send request to backend API
-      // with the orderId to mark the order as delivered
-      // You can use Axios or any other HTTP library for making the request
-
-      // Example using Axios
-      axios
-        .post(`/merchant/confirmDelivery`, { orderId })
-        .then(response => {
-          // Update the order status to "Delivered"
-          order.status = "Delivered";
-
-          // Confirmation successful
-          console.log("Delivery confirmed for order ID:", orderId);
-        })
-        .catch(error => {
-          // Handle error
-          console.error("Error confirming delivery:", error);
-        });
+            this.$confirm(内容, 标题, {
+                confirmButtonText: 确认文本,
+                cancelButtonText: 取消文本,
+                type: 'warning'
+            }).then(() => {
+                this.$message({
+                    type: 'success',
+                    message: 确认弹出文本
+                });
+                this.向后端发送新订单状态(id, 'yes')
+            }).catch(() => {
+                this.$message({
+                    type: 'info',
+                    message: 取消弹出文本
+                });
+            });
     },
     
     

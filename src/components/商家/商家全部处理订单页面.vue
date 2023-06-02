@@ -1,18 +1,18 @@
 <template>
     <div class="merchant-orders">
-      <h2>All Processed Orders</h2>
+      <h2>所有订单</h2>
       <ul>
         <li v-for="order in processedOrders" :key="order.id">
-          <h3>OrderID(订单ID): {{ order.id }}</h3>
-          <p>Time(时间): {{ order.time }}</p>
-          <p>Address(地址): {{ order.addr }}</p>
+          <h3>订单ID: {{ order.id }}</h3>
+          <p>时间: {{ order.time }}</p>
+          <p>地址: {{ order.addr }}</p>
           <div class="order-goods">
             <h4>Ordered Goods:</h4>
             <ul>
               <li v-for="goods in order.goods" :key="goods.name">
-                <p>Name(名称): {{ goods.name }}</p>
-                <p>Quantity(数量): {{ goods.number }}</p>
-                <p>Format: {{ goods.format }}</p>
+                <p>名称: {{ goods.name }}</p>
+                <p>数量: {{ goods.number }}</p>
+                <p>规格: {{ goods.format }}</p>
               </li>
             </ul>
           </div>
