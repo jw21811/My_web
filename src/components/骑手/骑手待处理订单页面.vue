@@ -1,18 +1,23 @@
 <template>
     <div class="背景">
-        <div class="单个订单区域" v-for="(Order, index) in 订单列表">
+        <div class="单个订单区域" v-for="(detail, index) in 订单列表">
             <div class="划分区域_子类纵向排列">
-                <div>订单id:<br>{{ Order.id }}</div>
-                <div>下单时间：<br>{{ Order.订单下单时间 }}</div>
+                <div>订单id:<br>{{ detail.order.id }}</div>
+                <div>下单时间：<br>{{ detail.order.create_time }}</div>
+                <div>接单时间：<br>{{ detail.order.accept_time }}</div>
                 <div>
-                    <el-button type="danger" @click="确认放弃订单(Order.id)">取消配送</el-button>
-                    <el-button type="primary" @click="确认完成配送(Order.id)">完成配送</el-button>
+                    <el-button type="danger" @click="确认放弃订单(detail.order.id)">取消配送</el-button>
+                    <el-button type="primary" @click="确认完成配送(detail.order.id)">完成配送</el-button>
                 </div>
             </div>
             <div class="划分区域_子类纵向排列">
-                <div>商家地址:<br>{{ Order.订单商家地址 }}</div>
-                <div>配送地址：<br>{{ Order.订单配送地址 }}</div>
-                <div>顾客电话:<br>{{ Order.顾客电话 }}</div>
+                <div>商家地址:<br>{{ detail.merchantInfo.address }}</div>
+                <div>配送地址：<br>{{ detail.order.customer_address }}</div>
+                <div>顾客昵称:<br>{{ detail.customerInfo.nickname }}</div>
+                <div>顾客电话：<br>{{ detail.customerInfo.phone }}</div>
+            </div>
+            <div class="划分区域_子类纵向排列">
+                <div>备注：<br>{{ detail.order.notes }}</div>
             </div>
         </div>
     </div>
@@ -97,7 +102,7 @@ export default {
                     }
                 })
         },
-        完成配送()
+        完成配送(id)
         {
             var address = `/deliver/completeOrder?deliver_id=${this.deliver_id}&order_id=${id}`
             this.axios
