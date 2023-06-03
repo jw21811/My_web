@@ -19,6 +19,7 @@
         </el-form>
         <el-col :span="24">
             <el-button type="primary" icon="el-icon-upload2" @click="上传更改()">上传更改</el-button>
+            <el-button type="danger" icon="el-icon-upload2" @click="注销账号()">注销账号</el-button>
         </el-col>
     </el-main>
 </template>
@@ -42,6 +43,26 @@ export default {
     },
     methods:
     {
+        注销账号()
+        {
+            this.Alert_Error('注销账号')
+            var address = `/customer/delete?id=${this.user_id}`
+            this.axios
+                .get(address)
+                .then((Return_info) => {
+                    if (Return_info.data.status_code != 666) {
+                        this.Alert_Error(Return_info.data.detail)
+                    }
+                    else {
+                        this.Alert_Success('修改成功！')
+                        this.$router.push({
+                    path: '/User/Login',
+                    query:{
+                    }
+             })
+                    }
+                })
+        },
         返回()
         {
             this.$router.back()
