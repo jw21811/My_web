@@ -13,12 +13,12 @@
             </el-col>
             <el-col :span="1">
                 <div class="grid-content bg-purple-light">
-                    b
+                    <el-button size="mini" type="primary" icon="el-icon-refresh" @click="向后端获取商家商品()">刷新</el-button>
                 </div>
             </el-col>
             <el-col :span="1">
                 <div class="grid-content bg-purple-light">
-                    c
+                    
                 </div>
             </el-col>
         </el-header>

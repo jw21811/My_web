@@ -6,7 +6,7 @@
                 <div>下单时间：<br>{{ Order.订单下单时间 }}</div>
                 <div>
                     <el-button type="danger" @click="确认放弃订单(Order.id)">取消配送</el-button>
-                    <el-button type="primary" @click="确认完成配送(Order.id)">完成订单</el-button>
+                    <el-button type="primary" @click="确认完成配送(Order.id)">完成配送</el-button>
                 </div>
             </div>
             <div class="划分区域_子类纵向排列">
@@ -27,27 +27,34 @@ export default {
     data() {
         return {
             deliver_id: '',
-            订单列表: [{ id: '1000', 订单商家地址: 'asdasdasd', 订单配送地址: 'asdasdfqerfwdetrv', 订单下单时间: '2023-5-31-18-00-00', 订单总价值: 100, 顾客电话: '12312341234' },
-            { id: '1000', 订单商家地址: 'asdasdasd', 订单配送地址: 'asdasdfqerfwdetrv', 订单下单时间: '2023-5-31-18-00-00', 订单总价值: 100, 顾客电话: '12312341234' }]
+            订单列表: []
         }
     },
     mounted() {
         this.deliver_id = this.$route.query.deliver_id
+        this.向后端获取待处理订单()
 
-        //此处的代码用于在页面创建时就获得用户的订单信息
-        /*
-        var address = '/deliver/getOrder_WorkingById?deliver_id=' + this.deliver_id
-        console.log(address)
-        this.axios
-            .get(address)
-            .then((Return_info) => {
-                this.订单列表 = Return_info.data.detail
-            })
-*/
+        
     },
     methods:
     {
-
+        向后端获取待处理订单() {
+            var address = '/deliver/getWorkingOrder?deliver_id=' + this.deliver_id
+            console.log(address)
+            this.axios
+                .get(address)
+                .then((Return_info) => {
+                    if(Return_info.data.status_code == 666)
+                    {
+                        this.订单列表 = Return_info.data.detail
+                    }
+                    else
+                    {
+                        this.Alert_Error(Return_info.data.detail)
+                    }
+                    
+                })
+        },
         Alert_Error(msg) {
             /**弹窗警告
              * 类型：错误
@@ -74,19 +81,37 @@ export default {
                 type: 'success'
             })
         },
-        向后端发送新订单状态(id, status) {
-            var address = ''
-            if (status == 'yes') {
-                address = '/deliver/setOrder_Status?deliver_id=' + this.deliver_id + '&order_id=' + id + '&new_order_status=next'
-            }
-            else {
-                address = '/deliver/setOrder_Status?deliver_id=' + this.deliver_id + '&order_id=' + id + '&new_order_status=back'
-            }
-            console.log(address)
+        放弃订单(id) {
+            var address = `/deliver/giveUpOrder?deliver_id=${this.deliver_id}&order_id=${id}`
             this.axios
                 .get(address)//向后端接口传输
                 .then((Return_info) => {
-
+                    if(Return_info.data.status_code == 666)
+                    {
+                        this.Alert_Success('弃单成功')
+                        this.向后端获取待处理订单()
+                    }
+                    else
+                    {
+                        this.Alert_Error(Return_info.data.detail)
+                    }
+                })
+        },
+        完成配送()
+        {
+            var address = `/deliver/completeOrder?deliver_id=${this.deliver_id}&order_id=${id}`
+            this.axios
+                .get(address)//向后端接口传输
+                .then((Return_info) => {
+                    if(Return_info.data.status_code == 666)
+                    {
+                        this.Alert_Success('配送成功')
+                        this.向后端获取待处理订单()
+                    }
+                    else
+                    {
+                        this.Alert_Error(Return_info.data.detail)
+                    }
                 })
         },
         确认放弃订单(id) {
@@ -114,7 +139,7 @@ export default {
                     type: 'success',
                     message: 确认弹出文本
                 });
-                this.向后端发送新订单状态(id, 'no')
+                this.放弃订单(id)
             }).catch(() => {
                 this.$message({
                     type: 'info',
@@ -147,7 +172,7 @@ export default {
                     type: 'success',
                     message: 确认弹出文本
                 });
-                this.向后端发送新订单状态(id, 'yes')
+                this.完成配送(id)
             }).catch(() => {
                 this.$message({
                     type: 'info',

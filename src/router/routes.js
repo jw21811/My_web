@@ -11,6 +11,7 @@ import User_Page_Merchant from '../components/用户/用户商家商品页面'
 import User_Page_Main from '../components/用户/用户空白说明页面'
 import User_Page_Complaint from '../components/用户/用户投诉页面'
 import User_Page_Info from '../components/用户/用户自身信息页面'
+import User_Page_Change_Info from '../components/用户/用户修改自身信息页面'
 
 import Merchant_Login from '../components/商家/商家登录页面'
 import Merchant_Register from '..//components/商家/商家注册页面'
@@ -19,6 +20,7 @@ import Merchant_Page_Order from '../components/商家/商家待处理订单页�
 import Merchant_Page_Goods from '../components/商家/商家商品页面'
 import Merchant_Page_Shop from '../components/商家/商家店铺页面'
 import Merchant_Page_History from '../components/商家/商家历史订单页面'
+import Merchant_Page_Add_New_Good from '../components/商家/商家添加商品页面'
 
 import Deliver_Login from '../components/骑手/骑手登录页面'
 import Deliver_Register from '../components/骑手/骑手注册页面'
@@ -51,6 +53,7 @@ const routes = [
             { path: '/User/Page/Order', component: User_Page_Order },
             { path: '/User/Page/Complaint',component: User_Page_Complaint},
             { path: '/User/Page/Info',component: User_Page_Info},
+            { path: '/User/Page/Change_Info',component: User_Page_Change_Info},
         ]
     },
 
@@ -62,6 +65,7 @@ const routes = [
             { path: '/Merchant/Page/Order', component: Merchant_Page_Order },//商家待处理订单页面
             { path: '/Merchant/Page/Goods', component: Merchant_Page_Goods },//商家商品页面
             { path: '/Merchant/Page/Shop', component: Merchant_Page_Shop },//商家店铺页面
+            { path: '/Merchant/Page/Add_New_Good', component: Merchant_Page_Add_New_Good }
         ]
     },
 

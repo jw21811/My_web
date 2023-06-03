@@ -98,6 +98,7 @@ export default {
                     }
                     else
                     {
+                        console.log(Return_info.data.detail)
                         this.user_id=Return_info.data.detail//通过后端返回值修改用户id
                         this.跳转到总界面()//跳转到商品页面
                     }

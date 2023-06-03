@@ -25,15 +25,14 @@ export default {
     data() {
         return {
             deliver_id: '',
-            订单列表: [{ id: '1000', 订单商家地址: 'asdasdasd', 订单配送地址: 'asdasdfqerfwdetrv', 订单下单时间: '2023-5-31-18-00-00', 订单总价值: 100, 顾客电话: '12312341234' },
-            { id: '1000', 订单商家地址: 'asdasdasd', 订单配送地址: 'asdasdfqerfwdetrv', 订单下单时间: '2023-5-31-18-00-00', 订单总价值: 100, 顾客电话: '12312341234' }]
+            订单列表: []
         }
     },
     mounted() {
         this.deliver_id = this.$route.query.deliver_id
 
         //此处的代码用于在页面创建时就获得用户的订单信息
-        var address = '/deliver/getOrder_HistoryById?deliver_id=' + this.deliver_id
+        var address = '/deliver/getHistoryOrder?deliver_id=' + this.deliver_id
         console.log(address)
         this.axios
             .get(address)

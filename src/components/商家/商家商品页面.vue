@@ -25,10 +25,13 @@
                         <el-button size="mini" type="danger" @click="确认删除商品(scope.$index)">删除</el-button>
                     </template>
                 </el-table-column>
-
             </el-table>
         </el-main>
-        <el-footer>Footer</el-footer>
+        <el-footer>
+            <div>
+                <el-button type="success" icon="el-icon-plus" @click="添加新商品()">添加新商品</el-button>
+            </div>
+        </el-footer>
     </el-container>
 </template>
 
@@ -50,6 +53,15 @@ export default {
     },
     methods:
     {
+        添加新商品()
+        {
+            this.$router.push({
+                path: '/Merchant/Page/Add_New_Good',
+                query: {
+                    merchant_id: this.merchant_id,
+                }
+            })
+        },
         返回按钮值(index)
         {
                 if(this.goods[index].is_sell_out)
