@@ -1,7 +1,7 @@
 <template>
     <el-container>
         <el-header>
-            <div>1232</div>
+            <div></div>
         </el-header>
         <el-main>
             <el-table :data=goods height="750" borderstyle="width: 100%">
@@ -15,8 +15,8 @@
                 </el-table-column>
                 <el-table-column prop="specification" label="规格">
                 </el-table-column>
-                <el-table-column prop="sales_volume" label="销量" sortable>
-                </el-table-column>
+                <!--<el-table-column prop="sales_volume" label="销量" sortable>
+                </el-table-column>-->
                 <el-table-column prop="是否售罄" label="售罄" sortable>
                 </el-table-column>
                 <el-table-column label="操作">

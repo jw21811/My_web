@@ -17,7 +17,14 @@
         </el-row>
         <el-row>
             <el-col :span="24">
+                <div>历史订单数量:{{ this.order_count }}</div>
+            </el-col>
+        </el-row>
+        
+        <el-row>
+            <el-col :span="24">
                 <el-button type="primary" icon="el-icon-tickets" @click="修改个人信息()">修改个人信息</el-button>
+                <el-button type="primary" icon="el-icon-tickets" @click="获取订单数量()">获取订单数量</el-button>
             </el-col>
         </el-row>
     </div>
@@ -29,7 +36,8 @@ export default {
     data() {
         return {
             user_id: '',
-            user_info: {}
+            user_info: {},
+            order_count:''
         }
     },
     mounted() {
@@ -46,7 +54,15 @@ export default {
                 }
             })
         },
-
+        获取订单数量()
+        {
+            var address = '/tmp/order_count?id=' + this.user_id
+            this.axios
+            .get(address)
+            .then((Return_info)=>{
+               this.order_count = Return_info.data.detail
+            })
+        },
         用户获取自身信息() {
             var address = `/customer/getSelfInfo?id=${this.user_id}`
             this.axios

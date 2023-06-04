@@ -10,7 +10,7 @@
                 <el-button type="primary" icon="el-icon-back" @click="返回()">返回</el-button>
                 <el-button type="primary" icon="el-icon-position" @click="向后端发送登录请求()">登录</el-button>
                 <el-button type="primary" icon="el-icon-position" @click="跳转到注册页面()">注册</el-button>
-                <el-button type="primary" icon="el-icon-position" @click="一键登录()">游客登录</el-button>
+                <!-- <el-button type="primary" icon="el-icon-position" @click="一键登录()">游客登录</el-button> -->
             </div>
         </div>
     </div>
@@ -87,20 +87,17 @@ export default {
             if(this.input_account !='' &&this.input_password !='')
             {
                 var address = `/customer/login?account=${this.input_account}&password=${this.input_password}`
-                console.log(address)
                 this.axios
                 .get(address)//向后端接口传输
                 .then((Return_info)=>{
-                    
-                    if(Return_info.data.status_code == 667)
+                    if(Return_info.data.status_code == 666)
                     {
-                        this.Alert_Error("账号或密码错误！")
+                        this.user_id=Return_info.data.detail//通过后端返回值修改用户id
+                        this.跳转到总界面()//跳转到商品页面
                     }
                     else
                     {
-                        console.log(Return_info.data.detail)
-                        this.user_id=Return_info.data.detail//通过后端返回值修改用户id
-                        this.跳转到总界面()//跳转到商品页面
+                       this.Alert_Error(Return_info.data.detail)
                     }
                 })
             }

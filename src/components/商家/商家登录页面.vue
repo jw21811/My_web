@@ -10,7 +10,7 @@
                 <el-button type="primary" icon="el-icon-back" @click="返回()">返回</el-button>
                 <el-button type="primary" icon="el-icon-position" @click="向后端发送登录请求()">登录</el-button>
                 <el-button type="primary" icon="el-icon-position" @click="跳转到注册页面()">注册</el-button>
-                <el-button type="primary" icon="el-icon-position" @click="一键登录()">游客登录</el-button>
+                
             </div>
         </div>
     </div>

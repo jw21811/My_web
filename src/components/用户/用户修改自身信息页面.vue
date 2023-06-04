@@ -74,7 +74,13 @@ export default {
                 this.Alert_Error("新密码长度应在6至16位之间")
                 return
             }
-            var address = `/customer/updateSelfInfo?id=${this.user_id}&oldPassword=${this.input_oldPassword}&newPassword=${this.input_newPassword}&name=${this.input_name}&phone=${this.input_phone}&nickname=${this.input_nickname}`
+            var address = `/customer/updateSelfInfo?
+                id=${this.user_id}
+                &oldPassword=${this.input_oldPassword}
+                &newPassword=${this.input_newPassword}
+                &name=${this.input_name}
+                &phone=${this.input_phone}
+                &nickname=${this.input_nickname}`
             this.axios
                 .get(address)
                 .then((Return_info) => {

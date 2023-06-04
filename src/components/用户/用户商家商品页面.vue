@@ -31,7 +31,7 @@
                     </el-col>
                     <el-col :span="4">
                         <div>
-                            售出 {{ Good.sales_volume }} 份
+                          <!--售出 {{ Good.sales_volume }} 份-->  
                         </div>
                     </el-col>
                     <el-col :span="8">
@@ -152,7 +152,6 @@ export default{
         },
         向后端获取商家商品()
         {
-            
             var address = '/customer/getGoodsById?merchant_id='+ this.merchant_id //字符串拼接，获得后端地址
                 this.axios
                 .get(address)
